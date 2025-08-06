@@ -6,7 +6,7 @@
   "scripts": {
     "dev:open": "npm run dev & node ./tools/open-browser.js",
     "dev": "vite",
-    "build": "node tools/generate-llms.js || true && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "test": "jest",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
