@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import Hero from '@/components/sections/Hero';
+import HeroImproved from '@/components/sections/HeroImproved';
 import About from '@/components/sections/About';
 import StatsRPGSection from '@/components/sections/StatsRPGSection';
 import Projects from '@/components/sections/Projects';
@@ -85,7 +85,7 @@ function App() {
           />
 
           <main>
-            <Hero scrollToSection={scrollToSection} handleDownloadCV={handleDownloadCV} />
+            <HeroImproved scrollToSection={scrollToSection} handleDownloadCV={handleDownloadCV} />
             <About />
             <VideoPresentation />
             <Passions />
