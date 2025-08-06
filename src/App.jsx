@@ -23,7 +23,6 @@ import VideoPresentation from '@/components/sections/VideoPresentation';
 import Certificats from '@/components/sections/Certificats';
 import FunFacts from '@/components/sections/FunFacts';
 import ChasseurTaches from './components/sections/ChasseurTaches';
-import KimiChatBot from './components/KimiChatBot';
 
 function App() {
   const [darkMode, toggleDarkMode] = useDarkMode();
@@ -96,7 +95,6 @@ function App() {
             <Projects />
             <Contact />
             <ChasseurTaches />
-            <KimiChatBot />
           </main>
           
           <Footer />
