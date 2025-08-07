@@ -1,87 +1,100 @@
-# Portfolio Ultra
+# Portfolio Ultra - Euloge Mabiala
 
-[![build](https://img.shields.io/github/actions/workflow/status/eulogep/portefolio-version-finale/ci.yml?branch=main)](https://github.com/eulogep/portefolio-version-finale/actions)
-[![license](https://img.shields.io/github/license/eulogep/portefolio-version-finale)](LICENSE)
+## 🚀 À propos
 
-Portfolio personnel moderne, interactif et évolutif, développé avec **React**, **Vite**, **Tailwind CSS**, **Radix UI**, **Framer Motion** et plus encore.
+Portfolio personnel créé par **Euloge Mabiala** avec un design moderne et des animations unifiées. Ce projet présente mes compétences en développement web, mes projets et mon parcours professionnel.
 
-## 🚀 Présentation
+## ✨ Fonctionnalités
 
-Bienvenue sur mon portfolio ! Vous y trouverez mes projets passés, présents et futurs, avec des expériences interactives et une navigation fluide. Chaque projet propose :
-- **Présentation détaillée**
-- **Démos interactives** (essayez le projet en live)
-- **Section PowerPoint** (présentation technique ou business)
-- **Statut du projet** (Fini, En cours, En élaboration)
+- **Design Premium** : Interface moderne avec animations fluides
+- **Animations Unifiées** : Système d'animations cohérent sur tout le portfolio
+- **Responsive** : Optimisé pour tous les appareils
+- **Performance** : Chargement rapide et optimisé
+- **Accessibilité** : Conforme aux standards d'accessibilité web
 
-## 📦 Installation
+## 🛠️ Technologies utilisées
+
+- **React 18** - Framework principal
+- **Framer Motion** - Animations fluides et interactives
+- **Tailwind CSS** - Styling moderne et responsive
+- **Vite** - Build tool rapide
+- **GitHub Pages** - Déploiement automatique
+
+## 🎨 Sections du Portfolio
+
+1. **Hero** - Section d'accueil avec animations premium
+2. **À propos** - Parcours, formation et expériences
+3. **Compétences** - Skills techniques et outils
+4. **Projets** - Réalisations avec filtres par statut
+5. **Contact** - Formulaire de contact et informations
+
+## 🚀 Installation et développement
 
 ```bash
+# Cloner le repository
+git clone https://github.com/eulogep/portefolio-ultra.git
+
+# Installer les dépendances
 npm install
+
+# Lancer le serveur de développement (port 4000)
 npm run dev
+
+# Construire pour la production
+npm run build
+
+# Déployer sur GitHub Pages
+npm run deploy
 ```
 
-Par défaut, le site s'ouvre sur [http://localhost:4000](http://localhost:4000)
+## 📁 Structure du projet
 
-## 🔧 Scripts
-- `npm run dev` : Démarrage en mode développement
-- `npm run dev:open` : Démarrage + ouverture auto du navigateur
-- `npm run build` : Build de production
-- `npm run preview` : Preview du build
-- `npm test` : Lancer les tests unitaires
+```
+src/
+├── components/
+│   ├── layout/          # Composants de mise en page
+│   ├── sections/        # Sections principales du portfolio
+│   └── ui/             # Composants UI réutilisables
+├── hooks/              # Hooks personnalisés
+├── data/               # Données du portfolio
+└── styles/             # Styles globaux
+```
 
-## 🗂️ Structure du projet
-- `src/components/` : Composants UI, layout, sections, projets
-- `src/hooks/` : Hooks personnalisés
-- `src/data/` : Données dynamiques (projets, compétences, etc.)
-- `src/lib/` : Fonctions utilitaires
-- `public/` : Assets statiques, manifest, favicon, etc.
+## 🎯 Système d'animations
 
-## 🛠️ Technologies principales
-- **React 18**
-- **Vite**
-- **Tailwind CSS**
-- **Radix UI**
-- **Framer Motion**
-- **i18next** (multilingue)
-- **Jest** & **Testing Library** (tests)
-- **GitHub Actions** (CI/CD)
+Le portfolio utilise un système d'animations unifié créé par Euloge Mabiala :
 
-## ✨ Projets interactifs
-Chaque projet du portfolio propose :
-- **Statut** : Fini, En cours, En élaboration
-- **Présentation** : description détaillée, objectifs, stack technique
-- **PowerPoint** : visualisez la présentation (slide intégrée ou PDF)
-- **Démo interactive** : testez le projet directement dans le navigateur ou via une sandbox intégrée
-- **Accès aux sources** : lien GitHub ou documentation
+- **useHeroAnimations** - Hook personnalisé pour les animations
+- **AnimatedBackground** - Composant de fond animé réutilisable
+- **Particules flottantes** - Effets visuels dynamiques
+- **Gradients animés** - Titres avec animations de couleur
 
-> **À venir** : Les projets futurs pourront être ajoutés dynamiquement, avec une interface d’édition et de gestion des statuts.
+## 📱 Responsive Design
 
-## 🤝 Contribution
-Les contributions sont les bienvenues !
-- Forkez le repo
-- Créez une branche feature/nom
-- Faites un PR
+Le portfolio est entièrement responsive et optimisé pour :
+- 📱 Mobile (320px+)
+- 📱 Tablet (768px+)
+- 💻 Desktop (1024px+)
+- 🖥️ Large screens (1440px+)
+
+## 🌐 Déploiement
+
+Le portfolio est déployé automatiquement sur GitHub Pages :
+- **URL** : https://eulogep.github.io/portefolio-ultra/
+- **Branch** : gh-pages
+- **Build** : Automatique via GitHub Actions
 
 ## 📄 Licence
-[MIT](LICENSE)
 
-## 👤 Contact
-- **Auteur** : Euloge Mabiala
-- [LinkedIn](https://www.linkedin.com/in/euloge-mabiala/)  
-- [Mail](mailto:euloge.mabiala@gmail.com)
+Ce projet est sous licence MIT. Vous êtes libre de l'utiliser et de le modifier.
 
----
+## 👨‍💻 Auteur
 
-## 📈 Roadmap & Améliorations prévues
-- [ ] Accessibilité renforcée (a11y)
-- [ ] PWA complète
-- [ ] Animations avancées
-- [ ] Formulaire de contact dynamique
-- [ ] Téléchargement de CV
-- [ ] Page 404 personnalisée
-- [ ] Ajout d’un mode édition pour les projets
-- [ ] Déploiement automatique (Netlify, Vercel...)
+**Euloge Mabiala**
+- 📧 Email : mabiala@et.esiea.fr
+- 🔗 LinkedIn : [Euloge Junior Mabiala](https://www.linkedin.com/in/euloge-junior-mabiala)
+- 🐙 GitHub : [@eulogep](https://github.com/eulogep)
 
 ---
 
-> **Ce portfolio est pensé pour évoluer et offrir une expérience utilisateur moderne, interactive et professionnelle.**# portefolio-version-RPG
+*Portfolio créé avec ❤️ par Euloge Mabiala - 2024*

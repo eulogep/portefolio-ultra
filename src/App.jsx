@@ -1,3 +1,9 @@
+/**
+ * Application principale du Portfolio Ultra
+ * Créé par Euloge Mabiala - Portfolio Ultra
+ * Portfolio personnel avec animations unifiées et design premium
+ */
+
 import React, { useEffect, useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { motion } from 'framer-motion';

@@ -1,3 +1,9 @@
+/**
+ * Section Hero principale avec animations premium
+ * Créé par Euloge Mabiala - Portfolio Ultra
+ * Système d'animations de référence pour tout le portfolio
+ */
+
 import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { Github, Linkedin, Mail, Download, ArrowDown, Sparkles } from 'lucide-react';

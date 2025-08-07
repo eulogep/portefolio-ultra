@@ -1,3 +1,8 @@
+/**
+ * Section "Mes Projets" avec animations unifiées
+ * Créé par Euloge Mabiala - Portfolio Ultra
+ * Utilise le système d'animations identique au Hero
+ */
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';

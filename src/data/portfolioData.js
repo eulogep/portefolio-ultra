@@ -1,3 +1,9 @@
+/**
+ * Données du portfolio personnel
+ * Créé par Euloge Mabiala - Portfolio Ultra
+ * Informations personnelles, projets, compétences et expériences
+ */
+
 import React from 'react';
 
 export const personalInfo = {

@@ -1,3 +1,9 @@
+/**
+ * Hook personnalisé pour les animations du Hero
+ * Créé par Euloge Mabiala - Portfolio Ultra
+ * Système d'animations unifié pour tout le portfolio
+ */
+
 import { useState, useEffect } from 'react';
 
 export const useHeroAnimations = () => {

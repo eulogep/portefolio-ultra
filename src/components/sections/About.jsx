@@ -1,3 +1,8 @@
+/**
+ * Section "À propos de moi" avec animations unifiées
+ * Créé par Euloge Mabiala - Portfolio Ultra
+ * Utilise le système d'animations identique au Hero
+ */
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';

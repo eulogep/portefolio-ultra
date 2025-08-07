@@ -1,3 +1,9 @@
+/**
+ * Composant de fond animé réutilisable
+ * Créé par Euloge Mabiala - Portfolio Ultra
+ * Reproduit exactement les effets du Hero sur toutes les sections
+ */
+
 import React from 'react';
 import { motion } from 'framer-motion';
 
