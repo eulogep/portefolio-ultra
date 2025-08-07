@@ -4,15 +4,13 @@
  * Portfolio personnel avec animations unifiées et design premium
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { motion } from 'framer-motion';
 import { Toaster } from '@/components/ui/toaster';
 import { useToast } from '@/components/ui/use-toast';
 import useDarkMode from '@/hooks/useDarkMode';
 import useScrollHandler from '@/hooks/useScrollHandler';
 import useCursorPosition from '@/hooks/useCursorPosition';
-import { useTranslation } from 'react-i18next';
 
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -25,7 +23,6 @@ import BackToTopButton from '@/components/layout/BackToTopButton';
 import FloatingShapes from '@/components/layout/FloatingShapes';
 import CursorTrail from '@/components/layout/CursorTrail';
 import Passions from '@/components/sections/Passions';
-import VideoPresentation from '@/components/sections/VideoPresentation';
 import Certificats from '@/components/sections/Certificats';
 import FunFacts from '@/components/sections/FunFacts';
 
@@ -35,7 +32,6 @@ function App() {
   const { scrollProgress, activeSection, scrollToSection } = useScrollHandler();
   const cursorPosition = useCursorPosition();
   const { toast } = useToast();
-  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
