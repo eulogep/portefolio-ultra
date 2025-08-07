@@ -87,7 +87,7 @@ function App() {
           <main>
             <HeroImproved scrollToSection={scrollToSection} handleDownloadCV={handleDownloadCV} />
             <About />
-            <VideoPresentation />
+            {/* <VideoPresentation /> */}
             <Passions />
             <Certificats />
             <FunFacts />

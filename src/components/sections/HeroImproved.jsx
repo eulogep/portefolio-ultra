@@ -137,7 +137,7 @@ const HeroImproved = ({ scrollToSection, handleDownloadCV }) => {
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500 rounded-full p-1">
                   <div className="w-full h-full bg-gray-900 rounded-full p-2">
                     <img
-                      src="/image de profil.jpg"
+                      src="/profile.jpg"
                       alt={`Photo de profil de ${personalInfo.name}`}
                       className="w-full h-full rounded-full object-cover"
                     />

@@ -37,7 +37,7 @@ const Hero = ({ scrollToSection, handleDownloadCV }) => {
               <img  
                 alt={`Photo de profil de ${personalInfo.name}`}
                 className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-xl"
-                src="/image de profil.jpg" />
+                src="/profile.jpg" />
             </div>
           </motion.div>
 
