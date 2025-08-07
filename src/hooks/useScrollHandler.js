@@ -12,7 +12,7 @@ const useScrollHandler = () => {
       const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       setScrollProgress(progress);
 
-      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+      const sections = ['home', 'about', 'projects', 'contact'];
       let currentSection = 'home';
 
       for (const sectionId of sections) {

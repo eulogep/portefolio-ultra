@@ -7,7 +7,6 @@ import { personalInfo } from '@/data/portfolioData';
 const navItems = [
   { id: 'home', label: 'Accueil' },
   { id: 'about', label: 'À propos' },
-  { id: 'skills', label: 'Compétences' },
   { id: 'projects', label: 'Projets' },
   { id: 'contact', label: 'Contact' },
 ];

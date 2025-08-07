@@ -16,13 +16,11 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import HeroImproved from '@/components/sections/HeroImproved';
 import About from '@/components/sections/About';
-import StatsRPGSection from '@/components/sections/StatsRPGSection';
 import Projects from '@/components/sections/Projects';
 import Contact from '@/components/sections/Contact';
 import BackToTopButton from '@/components/layout/BackToTopButton';
 import FloatingShapes from '@/components/layout/FloatingShapes';
 import CursorTrail from '@/components/layout/CursorTrail';
-import Passions from '@/components/sections/Passions';
 import Certificats from '@/components/sections/Certificats';
 import FunFacts from '@/components/sections/FunFacts';
 
@@ -90,10 +88,8 @@ function App() {
             <HeroImproved scrollToSection={scrollToSection} handleDownloadCV={handleDownloadCV} />
             <About />
             {/* <VideoPresentation /> */}
-            <Passions />
             <Certificats />
             <FunFacts />
-            <StatsRPGSection />
             <Projects />
             <Contact />
           </main>
