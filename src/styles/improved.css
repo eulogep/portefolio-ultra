@@ -401,3 +401,125 @@ textarea:focus-visible {
   background: rgba(255, 255, 255, 0.3);
 }
 
+/* === HARMONISATION DE L'INTERFACE === */
+
+/* Effet glass harmonisé pour toutes les sections */
+.glass-effect-premium {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.dark .glass-effect-premium {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Gradient de texte harmonisé */
+.gradient-text-premium {
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Fond de section harmonisé */
+.section-bg-harmonized {
+  background: linear-gradient(135deg, 
+    rgba(96, 165, 250, 0.05) 0%, 
+    rgba(167, 139, 250, 0.05) 50%, 
+    rgba(244, 114, 182, 0.05) 100%);
+}
+
+.dark .section-bg-harmonized {
+  background: linear-gradient(135deg, 
+    rgba(15, 23, 42, 0.9) 0%, 
+    rgba(30, 41, 59, 0.9) 50%, 
+    rgba(51, 65, 85, 0.9) 100%);
+}
+
+/* Animation d'entrée harmonisée */
+.animate-fade-in {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Boutons harmonisés */
+.btn-harmonized {
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(96, 165, 250, 0.3);
+}
+
+.btn-harmonized:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(96, 165, 250, 0.4);
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+}
+
+/* Cards harmonisées */
+.card-harmonized {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.card-harmonized:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .card-harmonized {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Glow effects harmonisés */
+.glow-text {
+  text-shadow: 
+    0 0 10px rgba(96, 165, 250, 0.5),
+    0 0 20px rgba(167, 139, 250, 0.3),
+    0 0 30px rgba(244, 114, 182, 0.2);
+}
+
+.glow-box {
+  box-shadow: 
+    0 0 20px rgba(96, 165, 250, 0.3),
+    0 0 40px rgba(167, 139, 250, 0.2),
+    0 0 60px rgba(244, 114, 182, 0.1);
+}
+
+/* Spacing harmonisé */
+.section-padding {
+  padding: 6rem 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 4rem 0;
+  }
+  
+  .card-harmonized {
+    padding: 1.5rem;
+  }
+  
+  .btn-harmonized {
+    padding: 0.625rem 1.5rem;
+    font-size: 0.875rem;
+  }
+}
+

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import ProjectModal from '@/components/ui/ProjectModal';
 import { useState } from 'react';
 import { useEffect, useRef } from 'react';
-import ChasseurTaches from '@/components/sections/ChasseurTaches';
+
 
 const statusColors = {
   fini: 'bg-green-100 text-green-700 border-green-400',
@@ -62,7 +62,7 @@ const ProjectCard = ({ project }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState('demo');
   const [modalUrl, setModalUrl] = useState('');
-  const [chasseurModalOpen, setChasseurModalOpen] = useState(false);
+
 
   const handleOpenModal = (type, url) => {
     setModalType(type);
@@ -228,34 +228,10 @@ const ProjectCard = ({ project }) => {
             )
           )}
         </div>
-        {/* Ajout du bouton spécial pour Chasseur de Tâches */}
-        {project.title === 'Chasseur de Tâches' && (
-          <Button
-            size="lg"
-            className="w-full mt-4 bg-gradient-to-r from-pink-500 to-yellow-400 text-white font-bold shadow-lg hover:from-pink-600 hover:to-yellow-500 premium-glow"
-            onClick={() => setChasseurModalOpen(true)}
-            aria-label="Tester Chasseur de Tâches"
-          >
-            Tester Chasseur de Tâches
-          </Button>
-        )}
+
       </div>
     </motion.div>
-    {/* Modale custom pour Chasseur de Tâches */}
-    {project.title === 'Chasseur de Tâches' && chasseurModalOpen && (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-        <div className="relative bg-white dark:bg-gray-900 rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 animate-fade-in">
-          <button
-            onClick={() => setChasseurModalOpen(false)}
-            className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 shadow"
-            aria-label="Fermer"
-          >
-            ×
-          </button>
-          <ChasseurTaches />
-        </div>
-      </div>
-    )}
+
     {/* Modale existante pour démo/ppt */}
     <ProjectModal
       open={modalOpen}

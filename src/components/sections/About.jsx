@@ -16,7 +16,7 @@ const softSkillIcons = {
 
 const About = () => {
   return (
-    <section id="about" className="relative py-24 overflow-hidden bg-gradient-to-br from-yellow-50 via-pink-50 to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <section id="about" className="section-padding relative section-bg-harmonized overflow-hidden">
       {/* Fond décoratif SVG premium */}
       <svg className="absolute left-0 top-0 w-full h-full pointer-events-none opacity-20 z-0" aria-hidden="true">
         <defs>

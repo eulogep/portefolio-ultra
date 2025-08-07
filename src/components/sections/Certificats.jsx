@@ -38,7 +38,7 @@ const Certificats = () => {
   const allCategories = Array.from(new Set(certificats.map(c => c.category)));
 
   return (
-    <section id="certificats" className="min-h-screen py-20 relative bg-gradient-to-br from-yellow-900 via-purple-950 to-gray-900">
+    <section id="certificats" className="section-padding relative section-bg-harmonized">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

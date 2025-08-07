@@ -98,7 +98,7 @@ const Passions = () => {
 
   return (
     <>
-      <section id="passions" className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-pink-50 to-yellow-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <section id="passions" className="section-padding relative section-bg-harmonized overflow-hidden">
         {/* Fond décoratif SVG premium */}
         <svg className="absolute left-0 top-0 w-full h-full pointer-events-none opacity-20 z-0" aria-hidden="true">
           <defs>
@@ -159,7 +159,7 @@ const Passions = () => {
         </div>
       </section>
       {/* Section Travail premium */}
-      <section id="travail" className="relative py-24 overflow-hidden bg-gradient-to-br from-yellow-50 via-blue-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700">
+      <section id="travail" className="section-padding relative section-bg-harmonized overflow-hidden">
         {/* Fond décoratif SVG premium */}
         <svg className="absolute left-0 top-0 w-full h-full pointer-events-none opacity-20 z-0" aria-hidden="true">
           <defs>

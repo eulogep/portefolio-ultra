@@ -26,7 +26,7 @@ const StatsRPGSection = () => {
   const globalLevel = Math.round(skills.reduce((acc, s) => acc + s.level, 0) / skills.length);
 
   return (
-    <section id="skills" className="py-20 relative bg-gradient-to-br from-slate-900 via-slate-950 to-gray-900">
+    <section id="skills" className="section-padding relative section-bg-harmonized">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -35,11 +35,11 @@ const StatsRPGSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="font-orbitron font-bold text-4xl lg:text-6xl glow-text mb-6">
-            STATISTIQUES
+          <h2 className="font-bold text-4xl lg:text-6xl gradient-text-premium mb-6">
+            Compétences Techniques
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Mes compétences représentées sous forme de stats RPG. Chaque point compte dans cette aventure !
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Découvrez mes compétences techniques et mon niveau de maîtrise
           </p>
         </motion.div>
 

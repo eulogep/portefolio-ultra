@@ -31,7 +31,7 @@ const Projects = () => {
   const allStatuses = Array.from(new Set(projects.map(p => p.status)));
 
   return (
-    <section id="projects" className="min-h-screen py-20 relative bg-gradient-to-br from-gray-900 via-slate-950 to-gray-900">
+    <section id="projects" className="section-padding relative section-bg-harmonized overflow-hidden">
       <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -40,11 +40,11 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="font-orbitron font-bold text-4xl lg:text-6xl glow-text mb-6">
-            MES QUÊTES
+          <h2 className="font-bold text-4xl lg:text-6xl gradient-text-premium mb-6">
+            Mes Projets
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Chaque projet est une aventure. Découvrez mes réalisations et défis relevés !
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Découvrez mes réalisations et projets en cours de développement
           </p>
         </motion.div>
 

@@ -10,7 +10,7 @@ const VideoPresentation = () => {
   };
 
   return (
-    <section id="video-presentation" className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <section id="video-presentation" className="section-padding relative section-bg-harmonized overflow-hidden">
       {/* Fond décoratif SVG premium */}
       <svg className="absolute left-0 top-0 w-full h-full pointer-events-none opacity-20 z-0" aria-hidden="true">
         <defs>
