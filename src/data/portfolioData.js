@@ -7,7 +7,7 @@ export const personalInfo = {
   description: 'Créatif, autonome et orienté solution, je développe aussi des projets personnels liés à l’IA, aux chatbots et au design graphique. Mon objectif est de mettre mes compétences au service de projets innovants et stimulants.',
   email: 'mabiala@et.esiea.fr',
   linkedin: 'https://www.linkedin.com/in/euloge-junior-mabiala',
-  github: 'https://github.com/eulogep/portfolio-euloge',
+  github: 'https://github.com/eulogep',
 };
 
 export const skills = [
