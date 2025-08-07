@@ -76,13 +76,13 @@ const Projects = () => {
   return (
     <section 
       id="projects" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden safe-area"
       style={{
         background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.1) 25%, rgba(16, 185, 129, 0.05) 50%, transparent 70%)`,
       }}
     >
       <AnimatedBackground particleCount={25}>
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -92,10 +92,10 @@ const Projects = () => {
           >
             <motion.div
               variants={itemVariants}
-              className="text-center mb-16"
+              className="text-center mb-12 sm:mb-16"
             >
               <motion.h2 
-                className="text-6xl md:text-8xl font-black tracking-tight"
+                className="responsive-heading font-black tracking-tight mb-6"
                 style={{
                   background: 'linear-gradient(135deg, #60a5fa 0%, #a78bfa 25%, #34d399 50%, #fbbf24 75%, #f87171 100%)',
                   backgroundSize: '300% 300%',
@@ -115,154 +115,165 @@ const Projects = () => {
                 Mes Projets
               </motion.h2>
               <motion.p 
-                className="text-xl md:text-2xl text-gray-300 font-light max-w-2xl mx-auto leading-relaxed"
+                className="responsive-text text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
                 variants={itemVariants}
               >
-                Découvrez mes réalisations et projets en cours de développement
+                Découvrez mes réalisations en développement web, applications mobiles et projets innovants
               </motion.p>
             </motion.div>
 
+            {/* Filtres */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap justify-center gap-4 mb-12"
+              className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12"
             >
               <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setFilter('all')}
-                className={`px-4 py-2 rounded-full font-semibold bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-gray-500 transition-all ${filter === 'all' ? 'bg-purple-600 text-white' : 'hover:bg-white/10 text-gray-300'}`}
+                className={`px-4 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
+                  filter === 'all'
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                    : 'glass-effect-premium hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300'
+                }`}
               >
-                <Target className="w-4 h-4 mr-2 inline" /> Toutes
+                <Filter className="w-4 h-4 sm:w-5 sm:h-5 inline mr-2" />
+                Tous
               </motion.button>
-              {allStatuses.map((status, index) => (
-                <motion.button
-                  key={status}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setFilter(status)}
-                  className={`px-4 py-2 rounded-full font-semibold bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-gray-500 transition-all ${filter === status ? 'bg-purple-600 text-white' : 'hover:bg-white/10 text-gray-300'}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  {React.createElement(statusIcons[status] || BookOpen, { className: 'w-4 h-4 mr-2 inline' })}
-                  {statusLabels[status] || status}
-                </motion.button>
-              ))}
+              
+              {allStatuses.map((status) => {
+                const Icon = statusIcons[status];
+                return (
+                  <motion.button
+                    key={status}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setFilter(status)}
+                    className={`px-4 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
+                      filter === status
+                        ? `bg-gradient-to-r ${statusColors[status]} text-white shadow-lg`
+                        : 'glass-effect-premium hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300'
+                    }`}
+                  >
+                    <Icon className="w-4 h-4 sm:w-5 sm:h-5 inline mr-2" />
+                    {statusLabels[status]}
+                  </motion.button>
+                );
+              })}
             </motion.div>
 
-            <motion.div 
-              className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto"
+            {/* Grille de projets */}
+            <motion.div
               variants={containerVariants}
+              className="responsive-grid"
             >
               <AnimatePresence mode="wait">
-                {filteredProjects.map((project, index) => {
-                  const StatusIcon = statusIcons[project.status] || BookOpen;
-                  const statusColor = statusColors[project.status] || 'from-gray-500 to-gray-600';
-                  return (
-                    <motion.div
-                      key={project.title}
-                      layout
-                      variants={itemVariants}
-                      initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -50, scale: 0.9 }}
-                      transition={{ 
-                        duration: 0.6, 
-                        delay: index * 0.1,
-                        type: "spring",
-                        stiffness: 100
-                      }}
-                      whileHover={{ 
-                        scale: 1.05, 
-                        y: -8,
-                        transition: { duration: 0.3 }
-                      }}
-                      className="group relative p-6 bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl hover:border-gray-500 transition-all duration-300 cursor-pointer overflow-hidden"
-                    >
-                      <motion.div
-                        className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center"
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                      >
-                        <Sparkles className="w-4 h-4 text-white" />
-                      </motion.div>
-
-                      <div className="relative z-10">
-                        <div className="flex items-start justify-between mb-4">
-                          <div className="flex items-center gap-3">
-                            <motion.div 
-                              className={`w-12 h-12 rounded-xl bg-gradient-to-br ${statusColor} flex items-center justify-center`}
-                              whileHover={{ scale: 1.1, rotate: 10 }}
-                              transition={{ type: "spring", stiffness: 300 }}
-                            >
-                              <Code2 className="w-6 h-6 text-white" />
-                            </motion.div>
-                            <div>
-                              <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>
-                              <div className="flex items-center gap-2">
-                                <StatusIcon className="w-4 h-4 text-gray-300" />
-                                <span className="text-sm text-gray-300">{statusLabels[project.status] || project.status}</span>
-                              </div>
-                            </div>
-                          </div>
+                {filteredProjects.map((project, index) => (
+                  <motion.div
+                    key={project.id}
+                    variants={itemVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                    transition={{ delay: index * 0.1 }}
+                    className="relative group"
+                  >
+                    <div className="relative overflow-hidden rounded-2xl glass-effect-premium hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                      {/* Image du projet */}
+                      <div className="relative h-48 sm:h-56 overflow-hidden">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                        
+                        {/* Badge de statut */}
+                        <div className="absolute top-4 right-4">
+                          <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${statusColors[project.status]} text-white`}>
+                            {statusLabels[project.status]}
+                          </span>
                         </div>
-                        
-                        <p className="text-gray-300 mb-4 line-clamp-3">{project.description}</p>
-                        
+                      </div>
+
+                      {/* Contenu du projet */}
+                      <div className="p-6">
+                        <div className="flex items-start justify-between mb-4">
+                          <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            {project.title}
+                          </h3>
+                          <motion.div
+                            className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                          >
+                            <Sparkles className="w-5 h-5 text-yellow-400" />
+                          </motion.div>
+                        </div>
+
+                        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                          {project.description}
+                        </p>
+
+                        {/* Technologies */}
                         <div className="flex flex-wrap gap-2 mb-4">
-                          {project.tech.slice(0, 3).map((tech, techIndex) => (
-                            <motion.span
-                              key={tech}
-                              className="px-2 py-1 bg-white/10 rounded-full text-xs text-gray-300"
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              whileInView={{ opacity: 1, scale: 1 }}
-                              transition={{ delay: techIndex * 0.1 }}
-                              viewport={{ once: true }}
+                          {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                            <span
+                              key={techIndex}
+                              className="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full"
                             >
                               {tech}
-                            </motion.span>
+                            </span>
                           ))}
-                          {project.tech.length > 3 && (
-                            <span className="px-2 py-1 bg-white/10 rounded-full text-xs text-gray-300">
-                              +{project.tech.length - 3}
+                          {project.technologies.length > 4 && (
+                            <span className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full">
+                              +{project.technologies.length - 4}
                             </span>
                           )}
                         </div>
-                        
-                        <div className="flex gap-2">
-                          {project.githubLink && (
-                            <motion.a
-                              href={project.githubLink}
+
+                        {/* Actions */}
+                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 sm:flex-none flex items-center justify-center px-4 py-2 bg-gray-900 dark:bg-gray-800 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-700 transition-colors text-sm font-medium"
+                          >
+                            <Code2 className="w-4 h-4 mr-2" />
+                            Code
+                          </a>
+                          {project.demo && (
+                            <a
+                              href={project.demo}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition-all"
-                              whileHover={{ scale: 1.02 }}
-                              whileTap={{ scale: 0.98 }}
+                              className="flex-1 sm:flex-none flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
                             >
-                              GitHub
-                            </motion.a>
-                          )}
-                          {project.demoLink && (
-                            <motion.a
-                              href={project.demoLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white text-center py-2 rounded-lg font-semibold hover:from-green-700 hover:to-emerald-700 transition-all"
-                              whileHover={{ scale: 1.02 }}
-                              whileTap={{ scale: 0.98 }}
-                            >
+                              <Play className="w-4 h-4 mr-2" />
                               Demo
-                            </motion.a>
+                            </a>
                           )}
                         </div>
                       </div>
-                    </motion.div>
-                  );
-                })}
+                    </div>
+                  </motion.div>
+                ))}
               </AnimatePresence>
             </motion.div>
+
+            {/* Message si aucun projet trouvé */}
+            {filteredProjects.length === 0 && (
+              <motion.div
+                variants={itemVariants}
+                className="text-center py-12"
+              >
+                <Layers className="w-16 h-16 mx-auto text-gray-400 mb-4" />
+                <p className="text-gray-600 dark:text-gray-400 text-lg">
+                  Aucun projet trouvé pour ce filtre
+                </p>
+              </motion.div>
+            )}
           </motion.div>
         </div>
       </AnimatedBackground>

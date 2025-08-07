@@ -8,16 +8,17 @@ import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { Github, Linkedin, Mail, Download, ArrowDown, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-  const personalInfo = {
-    name: 'Euloge Mabiala',
-    title: 'Étudiant Ingénieur Informatique – ESIEA',
-    description: 'Passionné par les nouvelles technologies et le développement logiciel, je me spécialise en développement web, cybersécurité et intelligence artificielle.',
-    social: {
-      github: 'https://github.com/eulogep',
-      linkedin: 'https://www.linkedin.com/in/euloge-junior-mabiala',
-      email: 'mabiala@et.esiea.fr'
-    }
-  };
+
+const personalInfo = {
+  name: 'Euloge Mabiala',
+  title: 'Étudiant Ingénieur Informatique – ESIEA',
+  description: 'Passionné par les nouvelles technologies et le développement logiciel, je me spécialise en développement web, cybersécurité et intelligence artificielle.',
+  social: {
+    github: 'https://github.com/eulogep',
+    linkedin: 'https://www.linkedin.com/in/euloge-junior-mabiala',
+    email: 'mabiala@et.esiea.fr'
+  }
+};
 
 const HeroImproved = ({ scrollToSection, handleDownloadCV }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -72,7 +73,7 @@ const HeroImproved = ({ scrollToSection, handleDownloadCV }) => {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden safe-area"
       style={{
         background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.1) 25%, rgba(16, 185, 129, 0.05) 50%, transparent 70%)`,
       }}
@@ -82,7 +83,7 @@ const HeroImproved = ({ scrollToSection, handleDownloadCV }) => {
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-30"
+            className="absolute w-1 h-1 sm:w-2 sm:h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-30"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -103,7 +104,7 @@ const HeroImproved = ({ scrollToSection, handleDownloadCV }) => {
       </div>
 
       {/* Grille de fond subtile */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.02]"
         style={{
           backgroundImage: `
@@ -114,158 +115,103 @@ const HeroImproved = ({ scrollToSection, handleDownloadCV }) => {
         }}
       />
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="space-y-8"
+          className="text-center max-w-4xl mx-auto"
         >
-          {/* Photo de profil avec effet halo */}
+          {/* Image de profil */}
           <motion.div
             variants={itemVariants}
-            className="relative inline-block"
+            className="mb-8 flex justify-center"
           >
-            <motion.div
-              variants={floatingVariants}
-              animate="animate"
-              className="relative"
-            >
-              {/* Halo lumineux */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400 rounded-full blur-xl opacity-30 scale-110" />
-              
-              {/* Cercle extérieur avec animation */}
+            <div className="relative">
+              <motion.img
+                src="/profile.jpg"
+                alt="Euloge Mabiala"
+                className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full object-cover border-4 border-white/20 shadow-2xl"
+                variants={floatingVariants}
+                animate="animate"
+              />
               <motion.div
-                className="relative w-40 h-40 mx-auto"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500 rounded-full p-1">
-                  <div className="w-full h-full bg-gray-900 rounded-full p-2">
-                    <img
-                      src="/profile.jpg"
-                      alt={`Photo de profil de ${personalInfo.name}`}
-                      className="w-full h-full rounded-full object-cover"
-                    />
-                  </div>
-                </div>
-                
-                {/* Icône sparkles animée */}
-                <motion.div
-                  className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full flex items-center justify-center"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                >
-                  <Sparkles className="w-4 h-4 text-white" />
-                </motion.div>
+                <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400" />
               </motion.div>
-            </motion.div>
+            </div>
           </motion.div>
 
-          {/* Titre principal avec effet de frappe */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <motion.h1 
-              className="text-6xl md:text-8xl font-black tracking-tight"
-              style={{
-                background: 'linear-gradient(135deg, #60a5fa 0%, #a78bfa 25%, #34d399 50%, #fbbf24 75%, #f87171 100%)',
-                backgroundSize: '300% 300%',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-              animate={{
-                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            >
+          {/* Nom et titre */}
+          <motion.div variants={itemVariants} className="mb-6">
+            <h1 className="responsive-heading font-bold text-gray-900 dark:text-white mb-4">
               {personalInfo.name}
-            </motion.h1>
-            
-            <motion.p 
-              className="text-xl md:text-2xl text-gray-300 font-light max-w-3xl mx-auto leading-relaxed"
-              variants={itemVariants}
-            >
+            </h1>
+            <h2 className="responsive-subheading text-blue-600 dark:text-blue-400 font-medium mb-4">
               {personalInfo.title}
-            </motion.p>
-            
-            <motion.p 
-              className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed"
-              variants={itemVariants}
-            >
+            </h2>
+            <p className="responsive-text text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
               {personalInfo.description}
-            </motion.p>
+            </p>
           </motion.div>
 
-          {/* Boutons d'action améliorés */}
-          <motion.div 
+          {/* Boutons d'action */}
+          <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <Button
+              onClick={() => scrollToSection('projects')}
+              className="w-full sm:w-auto px-8 py-3 text-base font-medium bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
-              <Button
-                onClick={() => scrollToSection('projects')}
-                className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  Voir mes projets
-                  <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Button>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              Voir mes projets
+            </Button>
+            <Button
+              onClick={handleDownloadCV}
+              variant="outline"
+              className="w-full sm:w-auto px-8 py-3 text-base font-medium border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white rounded-full transition-all duration-300 transform hover:scale-105"
             >
-              <Button
-                onClick={handleDownloadCV}
-                variant="outline"
-                className="group px-8 py-4 bg-transparent border-2 border-gray-600 hover:border-gray-400 text-gray-300 hover:text-white font-semibold rounded-xl transition-all duration-300"
-              >
-                <span className="flex items-center gap-2">
-                  <Download className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
-                  Télécharger CV
-                </span>
-              </Button>
-            </motion.div>
+              <Download className="w-4 h-4 mr-2" />
+              Télécharger CV
+            </Button>
           </motion.div>
 
-          {/* Liens sociaux améliorés */}
-          <motion.div 
+          {/* Liens sociaux */}
+          <motion.div
             variants={itemVariants}
-            className="flex justify-center space-x-6"
+            className="flex justify-center space-x-4 sm:space-x-6 mb-8"
           >
-            {[
-              { icon: Github, href: personalInfo.social.github, label: 'GitHub' },
-              { icon: Linkedin, href: personalInfo.social.linkedin, label: 'LinkedIn' },
-              { icon: Mail, href: `mailto:${personalInfo.social.email}`, label: 'Email' },
-            ].map(({ icon: Icon, href, label }) => (
-              <motion.a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative p-3 bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl hover:border-gray-500 transition-all duration-300"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Icon className="w-6 h-6 text-gray-400 group-hover:text-white transition-colors" />
-                <span className="sr-only">{label}</span>
-                
-                {/* Tooltip */}
-                <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                  {label}
-                </div>
-              </motion.a>
-            ))}
+            <motion.a
+              href={personalInfo.social.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="p-3 sm:p-4 rounded-full glass-effect-premium hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
+            >
+              <Github className="w-5 h-5 sm:w-6 sm:h-6" />
+            </motion.a>
+            <motion.a
+              href={personalInfo.social.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="p-3 sm:p-4 rounded-full glass-effect-premium hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
+            >
+              <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
+            </motion.a>
+            <motion.a
+              href={`mailto:${personalInfo.social.email}`}
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="p-3 sm:p-4 rounded-full glass-effect-premium hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
+            >
+              <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
+            </motion.a>
           </motion.div>
 
           {/* Indicateur de scroll */}
@@ -273,15 +219,14 @@ const HeroImproved = ({ scrollToSection, handleDownloadCV }) => {
             variants={itemVariants}
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
           >
-            <motion.div
+            <motion.button
+              onClick={() => scrollToSection('about')}
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="flex flex-col items-center text-gray-400 cursor-pointer"
-              onClick={() => scrollToSection('about')}
+              className="p-2 rounded-full glass-effect-premium hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
             >
-              <span className="text-sm mb-2">Découvrir</span>
-              <ArrowDown className="w-5 h-5" />
-            </motion.div>
+              <ArrowDown className="w-5 h-5 sm:w-6 sm:h-6" />
+            </motion.button>
           </motion.div>
         </motion.div>
       </div>
