@@ -17,7 +17,7 @@ import {
   Heart,
   TrendingUp,
   Zap,
-  Grid3X3,
+  Grid3x3,
   List,
   SortAsc,
   SortDesc
