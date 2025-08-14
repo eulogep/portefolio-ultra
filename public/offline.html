@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mode Hors Ligne - Portfolio Euloge</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    
+    .container {
+      text-align: center;
+      max-width: 600px;
+    }
+    
+    .icon {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+    
+    .actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    button {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .primary {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      color: white;
+    }
+    
+    .primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+    }
+    
+    .secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .features {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .feature {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .feature h3 {
+      margin-bottom: 0.5rem;
+      color: #60a5fa;
+    }
+    
+    .feature p {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      p { font-size: 1rem; }
+      .actions { flex-direction: column; align-items: center; }
+      button { min-width: 200px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">📱</div>
+    
+    <h1>Mode Hors Ligne</h1>
+    <p>
+      Vous êtes actuellement hors ligne, mais ce portfolio fonctionne comme une app !
+      Certaines fonctionnalités restent disponibles grâce à la technologie PWA.
+    </p>
+    
+    <div class="actions">
+      <button class="primary" onclick="tryReconnect()">
+        🔄 Réessayer la connexion
+      </button>
+      <button class="secondary" onclick="viewCachedContent()">
+        📄 Contenu en cache
+      </button>
+    </div>
+    
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Fonctionnement Offline</h3>
+        <p>Les pages visitées restent accessibles même sans internet</p>
+      </div>
+      
+      <div class="feature">
+        <div class="feature-icon">💾</div>
+        <h3>Données Sauvegardées</h3>
+        <p>Vos interactions sont stockées et synchronisées au retour en ligne</p>
+      </div>
+      
+      <div class="feature">
+        <div class="feature-icon">📱</div>
+        <h3>App Native</h3>
+        <p>Portfolio installable comme une vraie application mobile</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function tryReconnect() {
+      if (navigator.onLine) {
+        window.location.reload();
+      } else {
+        alert('🔌 Connexion internet toujours indisponible. Réessayez dans quelques instants.');
+      }
+    }
+    
+    function viewCachedContent() {
+      window.location.href = '/';
+    }
+    
+    // Auto-reload when back online
+    window.addEventListener('online', () => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    });
+    
+    // Update connection status
+    function updateConnectionStatus() {
+      if (navigator.onLine) {
+        document.querySelector('.primary').textContent = '✅ Connexion rétablie';
+        document.querySelector('.primary').onclick = () => window.location.reload();
+      }
+    }
+    
+    window.addEventListener('online', updateConnectionStatus);
+    window.addEventListener('offline', updateConnectionStatus);
+  </script>
+</body>
+</html>
