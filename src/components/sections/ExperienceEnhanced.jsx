@@ -330,10 +330,10 @@ const ExperienceEnhanced = () => {
                 color: "from-purple-500 to-pink-500"
               }
             ] : [
-              { 
-                icon: Award, 
-                title: "Diplômes", 
-                value: education.length,
+              {
+                icon: Award,
+                title: "Diplômes",
+                value: education?.length || 0,
                 description: "Formations complétées",
                 color: "from-blue-500 to-cyan-500"
               },
