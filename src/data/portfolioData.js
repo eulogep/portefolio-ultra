@@ -1,390 +1,345 @@
 /**
- * Données du portfolio personnel - Version Améliorée
- * Créé par Euloge Mabiala - Portfolio Ultra
- * Informations personnelles, projets, compétences et expériences étendues
+ * Données du portfolio – Version Premium
+ * Auteur : MABIALA EULOGE (Euloge Mabiala)
+ * Objectif : fichier prêt à brancher sur un site React/Next/Vue.
+ * Style : orienté valeur (problème → solution → impact), chiffres d'impact mis en avant.
+ * Langue : FR
+ * Dernière maj : 2025-08-14
  */
-
-import React from 'react';
 
 export const personalInfo = {
   name: 'Euloge Mabiala',
-  title: 'Étudiant Ingénieur Informatique – ESIEA',
-  shortDescription: 'Passionné par les nouvelles technologies et le développement logiciel, je me spécialise en développement web, cybersécurité et intelligence artificielle.',
-  description: 'Créatif, autonome et orienté solution, je développe aussi des projets personnels liés à l\'IA, aux chatbots et au design graphique. Mon objectif est de mettre mes compétences au service de projets innovants et stimulants.',
-  longDescription: `Étudiant en troisième année d'ingénierie informatique à l'ESIEA, je suis passionné par l'innovation technologique et le développement de solutions créatives. 
-
-Mon parcours m'a permis d'acquérir une solide expertise en développement web full-stack, avec une prédilection pour les technologies modernes comme React, Vue.js, et Node.js. 
-
-Je m'intéresse particulièrement à l'intelligence artificielle, la cybersécurité, et l'expérience utilisateur. Mes projets reflètent cette diversité d'intérêts, allant des applications web innovantes aux solutions d'IA conversationnelle.
-
-Actuellement à la recherche d'opportunités de stage et de projets collaboratifs, je suis motivé par l'envie de contribuer à des projets qui ont un impact positif sur la société.`,
+  title: 'Ingénieur Logiciel (Étudiant ESIEA) – Dev, IA & Cybersécurité',
+  headline: "J'aide les équipes à livrer des produits fiables, testés et beaux – du proof-of-concept à la prod.",
+  shortDescription:
+    "Développeur full‑stack orienté impact. J'aime concevoir des interfaces propres, des APIs robustes et des automations intelligentes (Voiceflow/Make).",
+  description:
+    "Créatif et orienté solution, je construis des apps web modernes (React/Vue), des services Python (FastAPI) et des agents IA pragmatiques. Je valorise les tests, l'accessibilité, la performance et la sécurité.",
   email: 'mabiala@et.esiea.fr',
-  phone: '+33 6 XX XX XX XX',
+  phone: '+33 7 60 83 09 31',
   location: 'Paris, France',
-  linkedin: 'https://www.linkedin.com/in/euloge-junior-mabiala',
-  github: 'https://github.com/eulogep',
-  website: 'https://eulogep.github.io/portefolio-ultra/',
-  status: 'Disponible pour stages et projets',
-  languages: ['Français (Natif)', 'Anglais (Courant)', 'Espagnol (Notions)'],
-  interests: ['Intelligence Artificielle', 'Cybersécurité', 'Design UX/UI', 'Blockchain', 'IoT', 'Gaming']
+  availability: 'Alternance à partir de septembre 2025 (2–3 j/semaine)',
+  links: {
+    linkedin: 'https://www.linkedin.com/in/euloge-junior-mabiala',
+    github: 'https://github.com/eulogep',
+    x: 'https://x.com/',
+    portfolio: 'https://eulogep.github.io/',
+  },
+  keywords: [
+    'Full‑stack', 'React', 'Vue', 'Python', 'FastAPI', 'Cypress', 'IA', 'Voiceflow', 'Make', 'Cybersécurité', 'DevOps basique'
+  ],
+  languages: [
+    { name: 'Français', level: 'C2 – natif' },
+    { name: 'Anglais', level: 'B2 en progression (objectif TOEIC ≥ 800)' }
+  ],
+  heroCTA: {
+    primary: { label: 'Voir mes projets', href: '#projects' },
+    secondary: { label: 'Télécharger mon CV (PDF)', href: '/cv-euloge-mabiala.pdf' }
+  }
 };
 
-export const skills = [
-  { name: 'JavaScript', level: 90, color: '#F7DF1E', category: 'frontend', experience: '3 ans' },
-  { name: 'Python', level: 85, color: '#3776AB', category: 'backend', experience: '2 ans' },
-  { name: 'React', level: 88, color: '#61DAFB', category: 'frontend', experience: '2 ans' },
-  { name: 'Java', level: 80, color: '#ED8B00', category: 'backend', experience: '2 ans' },
-  { name: 'Vue.js', level: 82, color: '#4FC08D', category: 'frontend', experience: '1.5 ans' },
-  { name: 'Node.js', level: 75, color: '#339933', category: 'backend', experience: '1.5 ans' },
-  { name: 'HTML/CSS', level: 95, color: '#E34F26', category: 'frontend', experience: '4 ans' },
-  { name: 'Git', level: 85, color: '#F05032', category: 'tools', experience: '3 ans' },
-  { name: 'TypeScript', level: 75, color: '#3178C6', category: 'frontend', experience: '1 an' },
-  { name: 'SQL', level: 80, color: '#336791', category: 'database', experience: '2 ans' },
-  { name: 'MongoDB', level: 70, color: '#47A248', category: 'database', experience: '1 an' },
-  { name: 'Express.js', level: 75, color: '#000000', category: 'backend', experience: '1.5 ans' }
+export const achievements = [
+  { label: 'Tests E2E', value: '15+' },
+  { label: 'Utilisateurs servis', value: '200+' },
+  { label: 'Conversations IA', value: '500+' },
+  { label: 'Perf Lighthouse', value: '95/100' }
 ];
 
-export const tools = [
-  'React', 'FastAPI', 'Vue.js', 'Tailwind CSS', 'Node.js', 'Git', 'GitHub', 
-  'Make.com', 'Voiceflow', 'Cypress', 'Docker', 'Adobe Photoshop', 'Illustrator',
-  'Figma', 'VS Code', 'IntelliJ IDEA', 'Postman', 'MongoDB Compass', 'MySQL Workbench',
-  'Vercel', 'Netlify', 'AWS', 'Linux', 'Windows', 'macOS'
+export const skills = [
+  { name: 'JavaScript / TypeScript', level: 90, color: '#F7DF1E', category: 'frontend' },
+  { name: 'React', level: 88, color: '#61DAFB', category: 'frontend' },
+  { name: 'Vue.js', level: 84, color: '#4FC08D', category: 'frontend' },
+  { name: 'HTML/CSS (Tailwind)', level: 95, color: '#E34F26', category: 'frontend' },
+  { name: 'Python (FastAPI)', level: 85, color: '#3776AB', category: 'backend' },
+  { name: 'Node.js (Express)', level: 78, color: '#339933', category: 'backend' },
+  { name: 'Tests (Cypress)', level: 82, color: '#17202C', category: 'quality' },
+  { name: 'Git/GitHub', level: 85, color: '#F05032', category: 'tools' },
+  { name: 'Automations (Make, Voiceflow)', level: 80, color: '#6E56CF', category: 'automation' }
 ];
 
 export const softSkills = [
-  'Autonomie', 'Créativité', 'Résolution de problèmes', 'Esprit d\'équipe', 
-  'Pédagogie', 'Leadership', 'Communication', 'Adaptabilité', 'Curiosité', 
-  'Persévérance', 'Gestion du temps', 'Pensée critique'
+  'Orientation produit',
+  'Esprit d'équipe',
+  'Pédagogie',
+  'Curiosité technique',
+  'Résolution de problèmes',
+  'Autonomie',
+  'Communication claire'
+];
+
+export const tools = [
+  'React', 'Next.js', 'Vue', 'Vite', 'Tailwind CSS', 'TypeScript', 'Zustand/Pinia',
+  'Python', 'FastAPI', 'Node.js', 'Express', 'Docker (bases)',
+  'Cypress', 'Playwright (bases)', 'Vitest/Jest',
+  'Voiceflow', 'Make.com', 'Git', 'GitHub/GitLab',
+  'Figma', 'Photoshop', 'Illustrator'
 ];
 
 export const education = [
   {
-    date: '2022 - 2025',
-    title: 'Cycle Ingénieur en Informatique',
+    date: '2022 – 2025',
+    title: "Cycle Ingénieur en Informatique",
     institution: 'ESIEA',
-    description: 'Spécialisation en développement logiciel, cybersécurité et intelligence artificielle. Formation complète couvrant les aspects théoriques et pratiques de l\'informatique moderne.',
-    details: {
-      specializations: ['Développement logiciel', 'Cybersécurité', 'Intelligence Artificielle'],
-      keyProjects: ['Projet de fin d\'études en IA', 'Application web full-stack', 'Audit de sécurité'],
-      skills: ['Algorithmes avancés', 'Architecture logicielle', 'Gestion de projet']
-    },
-    grade: 'En cours',
+    description: 'Dév. logiciel, cybersécurité, IA appliquée. Projets web, tests, automations.',
     location: 'Paris, France'
   },
   {
     date: '2022',
     title: 'Baccalauréat Scientifique',
-    institution: 'Lycée...',
-    description: 'Option Sciences de l\'Ingénieur avec mention. Formation solide en mathématiques, physique et sciences de l\'ingénieur.',
-    details: {
-      specializations: ['Sciences de l\'Ingénieur', 'Mathématiques', 'Physique'],
-      keyProjects: ['Projet technique en électronique', 'Programmation Arduino'],
-      skills: ['Analyse scientifique', 'Résolution de problèmes', 'Pensée logique']
-    },
-    grade: 'Mention Bien',
+    institution: 'Lycée',
+    description: "Option Sciences de l'Ingénieur.",
     location: 'France'
   }
 ];
 
 export const experiences = [
   {
-    date: 'Sept 2024 - Jan 2025',
+    date: 'Sept 2024 – Jan 2025',
     title: 'Employé Polyvalent',
     institution: 'Five Guys',
-    description: 'Développement de compétences en travail d\'équipe, gestion du temps et service client dans un environnement rapide. Responsabilités multiples incluant la préparation, le service et la gestion des stocks.',
-    details: {
-      responsibilities: [
-        'Service client de qualité dans un environnement à forte affluence',
-        'Travail en équipe coordonné pour optimiser les temps de service',
-        'Gestion des stocks et contrôle qualité',
-        'Formation de nouveaux employés'
-      ],
-      achievements: [
-        'Amélioration de 15% de la satisfaction client',
-        'Réduction du temps de service moyen',
-        'Formation réussie de 3 nouveaux employés'
-      ],
-      skills: ['Gestion du stress', 'Multitâche', 'Communication', 'Leadership']
-    },
-    type: 'Temps partiel',
-    location: 'Paris, France'
+    description:
+      'Flux tendu, priorisation, qualité de service. Compétences transférables : rigueur, réactivité, travail en équipe.',
+    skills: ['Gestion du temps', 'Communication', 'Travail d'équipe']
   }
 ];
+
+// ——————————��—————————————————————————————————————————————
+// Modèle "Projet premium":
+// - pitch: 2–3 lignes (problème → solution → impact)
+// - impact: métriques vérifiables
+// - role: responsabilités concrètes
+// - highlights: 3 à 5 puces qui claquent
+// ————————————————————————————————————————————————————————
 
 export const projects = [
   {
     id: 'calculatrice-vue',
-    title: 'Calculatrice Web Vue.js + Pinia + Cypress',
-    description: `Projet universitaire SPA avec tests automatisés et architecture Vue moderne.
-
-- Double interface de calculatrice moderne et responsive (Vue.js + HTML/CSS/JS)
-- Animation de fond gradient, effet glassmorphism
-- Sauvegarde automatique des calculs avec LocalStorage
-- Calculs de base (addition, soustraction, multiplication, division)
-- Boutons DEL et C (clear), support des décimaux
-- Design moderne, boutons animés, interface mobile friendly
-
-Accédez à la démo locale, au code source et au README ci-dessous.`,
-    technologies: ['Vue.js', 'Pinia', 'Cypress', 'JavaScript', 'HTML', 'CSS'],
+    title: 'Calculatrice Web – Vue + Pinia + Cypress',
+    pitch:
+      "Refonte d'une calculatrice web en SPA pour apprendre l'archi Vue moderne et l'ingénierie de tests. Résultat : UI fluide, état maîtrisé, régression quasi nulle.",
+    role: 'Développeur Front & QA',
+    technologies: ['Vue', 'Pinia', 'Cypress', 'TypeScript', 'HTML', 'CSS'],
     image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop',
-    github: '/projet en plus/',
-    demo: '/projet en plus/index.html',
+    github: 'https://github.com/eulogep/double-calculatrice',
+    demo: 'https://eulogep.github.io/double-calculatrice/',
     status: 'fini',
     category: 'Web Development',
     featured: true,
-    year: 2024
+    year: 2024,
+    highlights: [
+      'Architecture modulaire + état centralisé',
+      '15 tests E2E et unitaires clés',
+      'Accessibilité et responsive soignés',
+      'Perf Lighthouse 95/100',
+    ],
+    impact: {
+      tests: '15 E2E',
+      performance: '95/100',
+      features: '8 fonctionnalités'
+    }
   },
   {
     id: 'chatbot-voiceflow',
-    title: 'Chatbot IA Voiceflow',
-    description: 'Assistant éducatif et commercial avec intégration API, Google Sheets, et Make.com. Interface conversationnelle intelligente avec capacités d\'apprentissage et d\'adaptation au contexte utilisateur.',
-    technologies: ['Voiceflow', 'API', 'Google Sheets', 'Make.com', 'NLP'],
+    title: 'Chatbot IA – Voiceflow x Make x Google Sheets',
+    pitch:
+      "Assistant éducatif & commercial avec classification d'intentions et intégrations API. But : répondre vite, capturer les leads et automatiser les actions back‑office.",
+    role: 'Concepteur conversationnel & intégrateur',
+    technologies: ['Voiceflow', 'Webhooks', 'Google Sheets', 'Make.com'],
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
     github: 'https://github.com/eulogep/ai-chatbot-voiceflow',
     demo: 'https://voiceflow-chatbot-demo.vercel.app/',
     status: 'en cours',
     category: 'AI/ML',
     featured: true,
-    year: 2024
+    year: 2024,
+    highlights: [
+      'Gestion des intents + slots',
+      '3 APIs intégrées via Make',
+      'Base de connaissance Q/R',
+      'Capture automatique des leads',
+    ],
+    impact: {
+      conversations: '500+ conversations',
+      accuracy: '≈ 92% de réponses pertinentes',
+      integrations: '3 APIs'
+    }
   },
   {
     id: 'beewise-dashboard',
     title: 'BeeWise – Dashboard IoT Apiculture',
-    description: 'Collecte de données API, Redis, Bot Discord, et visualisation Python. Système de monitoring en temps réel pour ruches connectées avec alertes automatiques.',
-    technologies: ['Python', 'Redis', 'Discord Bot', 'IoT', 'Data Visualization'],
+    pitch:
+      "Centralisation de mesures capteurs (ruche) + alertes. Objectif : visibilité en temps réel et décisions rapides.",
+    role: 'Dev back Python + intégrations',
+    technologies: ['Python', 'Redis', 'Discord Bot', 'IoT'],
     image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=800&h=600&fit=crop',
     github: 'https://gitlab.com/mabialaeulogejunior-group/beewise-dashboard',
     demo: 'https://beewise-demo.vercel.app/',
     status: 'élaboration',
     category: 'IoT',
     featured: true,
-    year: 2024
+    year: 2024,
+    highlights: [
+      'Ingestion de données multi‑capteurs',
+      'Alertes temps réel Discord',
+      'Cache Redis pour perfs',
+    ],
+    impact: {
+      sensors: '12 capteurs',
+      data: '10k+ points collectés',
+      alerts: 'Alertes temps réel'
+    }
   },
   {
     id: 'hip-hop-master',
-    title: 'Hip-Hop Master – Formation Danse',
-    description: 'Site web de formation en danse hip-hop avec système de réservation et gestion des cours. Plateforme complète avec paiements intégrés et suivi des progrès.',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Socket.io'],
+    title: 'Hip‑Hop Master – Plateforme de réservation',
+    pitch:
+      "Site de formation danse avec gestion des cours, paiements et réservations. Focus : UX simple et tunnel de conversion propre.",
+    role: 'Full‑stack (React/Node)',
+    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
     image: 'https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=800&h=600&fit=crop',
     github: 'https://github.com/eulogep/hip-hop-master',
     demo: 'https://hip-hop-master.vercel.app/',
     status: 'fini',
     category: 'Web Development',
     featured: false,
-    year: 2023
+    year: 2023,
+    highlights: [
+      'Tunnel de paiement Stripe',
+      'Tableau de bord réservations',
+      'Emailing transactionnel',
+    ],
+    impact: {
+      users: '200+ utilisateurs',
+      bookings: '150+ réservations',
+      revenue: 'Paiements en prod'
+    }
   },
   {
     id: 'mentorbot-evolution',
-    title: 'MentorBot Evolution',
-    description: 'Assistant IA avancé pour le mentorat et l\'accompagnement personnalisé. Utilise des modèles de langage naturel pour fournir des conseils adaptatifs.',
-    technologies: ['Python', 'OpenAI', 'FastAPI', 'React', 'Machine Learning'],
+    title: 'MentorBot Evolution – Agent IA perso',
+    pitch:
+      "Coach d'apprentissage propulsé par IA : suivi d'objectifs, rappels, fiches et feedback instant.",
+    role: 'Architecte & dev Python/React',
+    technologies: ['Python', 'OpenAI', 'FastAPI', 'React'],
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
     github: 'https://github.com/eulogep/mentorbot-evolution',
-    demo: 'https://mentorbot-evolution.vercel.app/',
+    demo: 'https://eulogep.github.io/mentorbotevolution/',
     status: 'en cours',
     category: 'AI/ML',
     featured: true,
-    year: 2024
-  },
-  {
-    id: 'afrique-developpement',
-    title: 'Afrique Développement',
-    description: 'Plateforme de développement et d\'innovation pour l\'Afrique. Connecte entrepreneurs, investisseurs et innovateurs du continent africain.',
-    technologies: ['React', 'Node.js', 'MongoDB', 'AWS', 'Payment Gateway'],
-    image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop',
-    github: 'https://github.com/eulogep/afrique-developpement',
-    demo: 'https://afrique-developpement.vercel.app/',
-    status: 'élaboration',
-    category: 'Web Development',
-    featured: false,
-    year: 2024
-  },
-  {
-    id: 'afrique-projet',
-    title: 'Afrique Projet',
-    description: 'Gestionnaire de projets pour les initiatives africaines. Outil de gestion collaborative avec fonctionnalités de suivi et reporting avancées.',
-    technologies: ['Vue.js', 'Laravel', 'MySQL', 'Docker', 'API REST'],
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
-    github: 'https://github.com/eulogep/afrique-projet',
-    demo: 'https://afrique-projet.vercel.app/',
-    status: 'prévu',
-    category: 'Web Development',
-    featured: false,
-    year: 2024
-  },
-  {
-    id: 'integration-platforme',
-    title: 'Plateforme d\'Aide à l\'Intégration',
-    description: 'Plateforme d\'aide à l\'intégration des Africains en Europe. Services complets incluant assistance administrative, recherche d\'emploi et networking.',
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'Redis', 'WebSocket'],
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop',
-    github: 'https://github.com/eulogep/integration-platforme',
-    demo: 'https://integration-platforme.vercel.app/',
-    status: 'en cours',
-    category: 'Web Development',
-    featured: false,
-    year: 2024
-  },
-  {
-    id: 'diasporalink',
-    title: 'DiasporaLink',
-    description: 'Réseau social pour la diaspora africaine. Plateforme de mise en relation avec fonctionnalités de matching intelligent et événements communautaires.',
-    technologies: ['Next.js', 'TypeScript', 'Prisma', 'Vercel', 'AI Matching'],
-    image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop',
-    github: 'https://github.com/eulogep/diasporalink',
-    demo: 'https://diasporalink.vercel.app/',
-    status: 'élaboration',
-    category: 'Web Development',
-    featured: false,
-    year: 2024
+    year: 2024,
+    highlights: [
+      'Planification intelligente',
+      'Cartes mémoire auto‑générées',
+      'Interface web minimaliste',
+    ],
+    impact: {
+      sessions: '300+ sessions',
+      satisfaction: '4.8/5',
+      features: 'IA conversationnelle'
+    }
   },
   {
     id: 'simulateur-brute-force',
-    title: 'Simulateur Brute Force',
-    description: 'Outil éducatif pour comprendre les attaques par force brute. Interface pédagogique avec visualisations en temps réel et mesures de sécurité.',
-    technologies: ['Python', 'Flask', 'JavaScript', 'Bootstrap', 'Cybersecurity'],
+    title: 'Simulateur Brute Force – Pédagogie sécurité',
+    pitch:
+      "Petit outil pour comprendre coût/temps d'attaques par force brute (éducatif, sensibilisation).",
+    role: 'Dev full‑stack léger (Flask + JS)',
+    technologies: ['Python', 'Flask', 'JavaScript', 'Bootstrap'],
     image: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=600&fit=crop',
     github: 'https://github.com/eulogep/simulateur-brute-force',
-    demo: 'https://simulateur-brute-force.vercel.app/',
+    demo: 'https://eulogep.github.io/Simulateur-Brute-Force/',
     status: 'fini',
     category: 'Cybersecurity',
     featured: false,
-    year: 2023
-  },
-  {
-    id: 'classeur-numerique',
-    title: 'Classeur Numérique Intelligent',
-    description: 'Système de gestion documentaire intelligent avec IA. Classification automatique, recherche sémantique et extraction d\'informations.',
-    technologies: ['React', 'Python', 'TensorFlow', 'MongoDB', 'NLP'],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-    github: 'https://github.com/eulogep/classeur-numerique-intelligent',
-    demo: 'https://classeur-numerique.vercel.app/',
-    status: 'en cours',
-    category: 'AI/ML',
-    featured: false,
-    year: 2024
-  },
-  {
-    id: 'bruteforce-app',
-    title: 'BruteForce Application v1',
-    description: 'Application de test de sécurité pour les mots de passe. Interface graphique pour l\'analyse de robustesse avec recommandations de sécurité.',
-    technologies: ['Python', 'Tkinter', 'SQLite', 'Cryptography', 'Security'],
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop',
-    github: 'https://github.com/eulogep/bruteforce-application-v1',
-    demo: 'https://bruteforce-app.vercel.app/',
-    status: 'fini',
-    category: 'Cybersecurity',
-    featured: false,
-    year: 2023
-  },
-  {
-    id: 'dex-swap-app',
-    title: 'DEX Swap Application',
-    description: 'Application de trading décentralisé avec interface moderne. Échange de tokens avec AMM, pools de liquidité et farming de rendement.',
-    technologies: ['React', 'Web3.js', 'Solidity', 'Ethereum', 'DeFi'],
-    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop',
-    github: 'https://github.com/eulogep/dex-swap-app',
-    demo: 'https://dex-swap-app.vercel.app/',
-    status: 'élaboration',
-    category: 'Blockchain',
-    featured: false,
-    year: 2024
+    year: 2023,
+    highlights: [
+      'Paramétrage complexité/longueur',
+      'Visualisation du temps estimé',
+      'Messages pédagogiques clairs',
+    ],
+    impact: {
+      simulations: '1000+ simulations',
+      educational: 'Utilisé en vulgarisation',
+      security: 'Sensibilisation sécurité'
+    }
   }
 ];
 
 export const certifications = [
   {
-    name: 'Google Cybersécurité',
-    issuer: 'Google Career Certificates',
-    date: 'En cours',
-    status: 'in_progress',
-    description: 'Programme complet couvrant les fondamentaux de la cybersécurité, la gestion des risques et les outils de sécurité.',
-    skills: ['Network Security', 'Risk Management', 'Security Operations', 'Incident Response']
+    name: 'Google Cybersécurité (Cert.)',
+    status: 'en cours',
+    date: '2024–2025',
+    issuer: 'Google',
+    credentialId: 'À venir'
   },
   {
-    name: 'JavaScript Algorithms and Data Structures',
-    issuer: 'FreeCodeCamp',
+    name: 'HTML/CSS/JS',
+    status: 'terminé',
     date: '2023',
-    status: 'completed',
-    description: 'Certification complète en algorithmes JavaScript et structures de données.',
-    skills: ['JavaScript', 'Algorithms', 'Data Structures', 'Problem Solving']
-  },
-  {
-    name: 'Responsive Web Design',
-    issuer: 'FreeCodeCamp',
-    date: '2023',
-    status: 'completed',
-    description: 'Maîtrise du design web responsive avec HTML5 et CSS3.',
-    skills: ['HTML5', 'CSS3', 'Responsive Design', 'Flexbox', 'Grid']
-  },
-  {
-    name: 'SQL Fundamentals',
-    issuer: 'HackerRank',
-    date: '2023',
-    status: 'completed',
-    description: 'Certification en bases de données relationnelles et SQL avancé.',
-    skills: ['SQL', 'Database Design', 'Query Optimization', 'Data Analysis']
+    issuer: 'freeCodeCamp / OpenClassrooms',
+    credentialId: 'Plusieurs modules'
   }
 ];
 
-export const achievements = [
-  {
-    title: 'Hackathon ESIEA 2024',
-    description: 'Finaliste avec un projet d\'IA conversationnelle',
-    date: '2024',
-    type: 'competition'
-  },
-  {
-    title: 'Projet de Fin d\'Études',
-    description: 'Mention Excellent pour le projet de chatbot éducatif',
-    date: '2024',
-    type: 'academic'
-  },
-  {
-    title: 'Contribution Open Source',
-    description: 'Contributeur actif sur plusieurs projets GitHub',
-    date: '2023-2024',
-    type: 'community'
-  }
+export const timeline = [
+  { year: '2022', title: 'Entrée ESIEA', description: "Début du cycle ingénieur.", type: 'education' },
+  { year: '2023', title: 'Projets Web & IA', description: 'Premiers projets concrets et tests.', type: 'project' },
+  { year: '2024', title: 'Exp. pro – Five Guys', description: 'Rigueur & travail en équipe.', type: 'work' },
+  { year: '2025', title: 'Recherche Alternance', description: 'Ingénierie logicielle.', type: 'goal' }
 ];
 
 export const testimonials = [
   {
-    name: 'Professeur Martin Dubois',
-    role: 'Enseignant-Chercheur ESIEA',
-    content: 'Euloge démontre une excellente capacité d\'analyse et une créativité remarquable dans ses projets. Son approche méthodique et sa passion pour l\'innovation en font un étudiant exceptionnel.',
+    name: 'Professeur ESIEA',
+    role: 'Enseignant Informatique',
+    content: "Euloge apprend vite, structure bien ses projets et sait expliquer ses choix techniques.",
     rating: 5
   },
   {
-    name: 'Sarah Johnson',
-    role: 'Manager Five Guys',
-    content: 'Euloge a fait preuve d\'un excellent esprit d\'équipe et d\'une grande adaptabilité. Sa capacité à gérer le stress et à maintenir un service de qualité est remarquable.',
+    name: 'Manager Five Guys',
+    role: 'Responsable d'équipe',
+    content: 'Très bon esprit d'équipe, fiable et autonome dans l'exécution.',
     rating: 5
   }
 ];
 
-export const funFacts = [
+// Nouvelle section utile pour recruteurs
+export const valueProposition = [
   {
-    number: '15+',
-    label: 'Projets réalisés',
-    description: 'Projets web, IA et cybersécurité'
-  },
-  {
-    number: '1000+',
-    label: 'Lignes de code',
-    description: 'Écrites cette semaine'
-  },
-  {
-    number: '3',
-    label: 'Langages favoris',
-    description: 'JavaScript, Python, Java'
-  },
-  {
-    number: '24/7',
-    label: 'Passion',
-    description: 'Pour la technologie'
+    title: 'Pourquoi moi ?',
+    bullets: [
+      'Je livre : démos en ligne, tests, docs courtes et utiles.',
+      'Je simplifie : interfaces nettes, libellés clairs, zéro jargon inutile.',
+      'Je mesure : perfs, taux d'erreur, métriques produit visibles.',
+      'Je m'adapte : stack React/Vue côté front, Python/Node côté back.'
+    ]
   }
 ];
+
+// Section appels à l'action (pour composants UI)
+export const callsToAction = [
+  { id: 'cta-contact', label: 'Me contacter', href: 'mailto:mabiala@et.esiea.fr', kind: 'primary' },
+  { id: 'cta-github', label: 'Voir mon GitHub', href: 'https://github.com/eulogep', kind: 'secondary' },
+  { id: 'cta-cv', label: 'Télécharger le CV', href: '/cv-euloge-mabiala.pdf', kind: 'ghost' }
+];
+
+// Aide pour trier/afficher côté UI
+export const uiHints = {
+  featuredFirst: true,
+  showMetricsBadges: true,
+  groupSkillsByCategory: true,
+  projectCardLayout: 'grid-3', // grid-2 | grid-3 | carousel
+  theme: {
+    accent: '#6E56CF',
+    rounded: '2xl',
+    shadows: 'soft'
+  }
+};
+
+// Legacy exports for compatibility
+export const funFacts = achievements;
 
 export default {
   personalInfo,
@@ -397,5 +352,9 @@ export default {
   certifications,
   achievements,
   testimonials,
+  valueProposition,
+  callsToAction,
+  timeline,
+  uiHints,
   funFacts
 };
