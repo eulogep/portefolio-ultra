@@ -108,8 +108,9 @@ const ProjectsEnhanced = () => {
     }
   };
 
-  const ProjectCard = ({ project, index }) => (
+  const ProjectCard = React.forwardRef(({ project, index }, ref) => (
     <motion.div
+      ref={ref}
       variants={itemVariants}
       layout
       className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300"
@@ -215,7 +216,7 @@ const ProjectsEnhanced = () => {
         }}
       />
     </motion.div>
-  );
+  ));
 
   const ProjectModal = ({ project, onClose }) => (
     <motion.div
