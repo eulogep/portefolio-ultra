@@ -308,16 +308,16 @@ const HeroEnhanced = ({ scrollToSection, handleDownloadCV }) => {
               className="flex justify-center space-x-6"
             >
               {[
-                { 
-                  icon: Github, 
-                  href: personalInfo.github, 
+                {
+                  icon: Github,
+                  href: personalInfo.links?.github,
                   label: "GitHub",
                   color: "hover:bg-gray-800 hover:text-white",
                   hoverRotate: 5
                 },
-                { 
-                  icon: Linkedin, 
-                  href: personalInfo.linkedin, 
+                {
+                  icon: Linkedin,
+                  href: personalInfo.links?.linkedin,
                   label: "LinkedIn",
                   color: "hover:bg-blue-600 hover:text-white",
                   hoverRotate: -5
