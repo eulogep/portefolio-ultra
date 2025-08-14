@@ -1,252 +1,213 @@
-import React, { useMemo, useRef, useCallback } from 'react';
-import { motion, useTransform, useViewportScroll, useReducedMotion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
-const AnimatedBackgroundEnhanced = ({ 
-  variant = 'default', 
-  intensity = 0.5,
-  particleCount = 50,
-  className = '',
-  children 
-}) => {
-  const { scrollYProgress } = useViewportScroll();
-  const shouldReduceMotion = useReducedMotion();
-  const containerRef = useRef(null);
+const AnimatedBackgroundEnhanced = ({ variant = 'default', children }) => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [windowSize, setWindowSize] = useState({ width: 1920, height: 1080 });
 
-  // Transform values based on scroll
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
 
-  // Memoized particle generation for performance
-  const particles = useMemo(() => {
-    if (shouldReduceMotion) return [];
-    
-    return Array.from({ length: particleCount }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 4 + 2,
-      duration: Math.random() * 20 + 10,
-      delay: Math.random() * 5,
-      opacity: Math.random() * 0.6 + 0.2,
-      color: [
-        'rgba(96, 165, 250, 0.4)',
-        'rgba(244, 114, 182, 0.4)', 
-        'rgba(251, 191, 36, 0.4)',
-        'rgba(139, 92, 246, 0.4)',
-        'rgba(16, 185, 129, 0.4)'
-      ][Math.floor(Math.random() * 5)]
-    }));
-  }, [particleCount, shouldReduceMotion]);
+    const handleResize = () => {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    };
 
-  // Memoized floating shapes
-  const floatingShapes = useMemo(() => {
-    if (shouldReduceMotion) return [];
-    
-    return Array.from({ length: 8 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 200 + 100,
-      duration: Math.random() * 30 + 20,
-      delay: Math.random() * 10,
-      opacity: Math.random() * 0.1 + 0.05,
-      blur: Math.random() * 20 + 10
-    }));
-  }, [shouldReduceMotion]);
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial call
 
-  const getVariantStyles = useCallback(() => {
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const getParticleCount = () => {
     switch (variant) {
-      case 'hero':
-        return {
-          background: `
-            radial-gradient(circle at 20% 80%, rgba(96, 165, 250, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(244, 114, 182, 0.15) 0%, transparent 50%),
-            linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(244, 114, 182, 0.05) 50%, rgba(251, 191, 36, 0.05) 100%)
-          `
-        };
-      case 'dark':
-        return {
-          background: `
-            radial-gradient(circle at 25% 25%, rgba(0, 0, 0, 0.8) 0%, transparent 50%),
-            linear-gradient(135deg, rgba(17, 24, 39, 0.9) 0%, rgba(31, 41, 55, 0.9) 100%)
-          `
-        };
-      case 'gradient':
-        return {
-          background: `
-            linear-gradient(135deg, 
-              rgba(96, 165, 250, 0.1) 0%, 
-              rgba(139, 92, 246, 0.1) 25%,
-              rgba(244, 114, 182, 0.1) 50%,
-              rgba(251, 191, 36, 0.1) 75%,
-              rgba(16, 185, 129, 0.1) 100%
-            )
-          `
-        };
-      default:
-        return {
-          background: 'transparent'
-        };
+      case 'hero': return 12;
+      case 'sections': return 8;
+      case 'minimal': return 6;
+      default: return 10;
     }
-  }, [variant]);
+  };
 
-  // Grid pattern component
-  const GridPattern = useCallback(() => (
-    <motion.div
-      className="absolute inset-0 opacity-20"
-      style={{ y: y1 }}
-    >
-      <svg width="100%" height="100%" className="absolute inset-0">
-        <defs>
-          <pattern
-            id="grid"
-            width="50"
-            height="50"
-            patternUnits="userSpaceOnUse"
-          >
-            <path
-              d="M 50 0 L 0 0 0 50"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1"
-              opacity="0.1"
-            />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid)" />
-      </svg>
-    </motion.div>
-  ), [y1]);
+  const getParticleSize = () => {
+    switch (variant) {
+      case 'hero': return { min: 100, max: 300 };
+      case 'sections': return { min: 60, max: 200 };
+      case 'minimal': return { min: 40, max: 120 };
+      default: return { min: 80, max: 250 };
+    }
+  };
 
-  // Particle component
-  const Particle = useCallback(({ particle }) => (
-    <motion.div
-      key={particle.id}
-      className="absolute rounded-full pointer-events-none"
-      style={{
-        left: `${particle.x}%`,
-        top: `${particle.y}%`,
-        width: particle.size,
-        height: particle.size,
-        backgroundColor: particle.color,
-        opacity: particle.opacity
-      }}
-      animate={{
-        y: [-10, 10, -10],
-        x: [-5, 5, -5],
-        scale: [1, 1.1, 1],
-        opacity: [particle.opacity, particle.opacity * 0.5, particle.opacity]
-      }}
-      transition={{
-        duration: particle.duration,
-        repeat: Infinity,
-        delay: particle.delay,
-        ease: "easeInOut"
-      }}
-    />
-  ), []);
+  const particleCount = getParticleCount();
+  const particleSize = getParticleSize();
 
-  // Floating shape component
-  const FloatingShape = useCallback(({ shape }) => (
-    <motion.div
-      key={shape.id}
-      className="absolute rounded-full pointer-events-none"
-      style={{
-        left: `${shape.x}%`,
-        top: `${shape.y}%`,
-        width: shape.size,
-        height: shape.size,
-        background: `radial-gradient(circle, rgba(96, 165, 250, ${shape.opacity}) 0%, transparent 70%)`,
-        filter: `blur(${shape.blur}px)`
-      }}
-      animate={{
-        y: [0, -20, 0],
-        x: [0, 10, 0],
-        scale: [1, 1.05, 1]
-      }}
-      transition={{
-        duration: shape.duration,
-        repeat: Infinity,
-        delay: shape.delay,
-        ease: "easeInOut"
-      }}
-    />
-  ), []);
+  const gradients = [
+    'var(--gradient-primary)',
+    'var(--gradient-secondary)',
+    'var(--gradient-tertiary)',
+    'linear-gradient(135deg, var(--primary-400), var(--secondary-400))',
+    'linear-gradient(135deg, var(--secondary-400), var(--tertiary-400))',
+    'linear-gradient(135deg, var(--tertiary-400), var(--primary-400))',
+  ];
 
   return (
-    <div 
-      ref={containerRef}
-      className={`fixed inset-0 -z-10 overflow-hidden ${className}`}
-      style={getVariantStyles()}
-    >
-      {/* Grid Pattern */}
-      {!shouldReduceMotion && <GridPattern />}
-
-      {/* Floating Shapes */}
-      {!shouldReduceMotion && floatingShapes.map(shape => (
-        <FloatingShape key={shape.id} shape={shape} />
-      ))}
-
-      {/* Particles */}
-      {!shouldReduceMotion && particles.map(particle => (
-        <Particle key={particle.id} particle={particle} />
-      ))}
-
-      {/* Scroll-based overlay */}
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      {/* Dynamic Gradient Background */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-b from-transparent via-background/5 to-background/20"
-        style={{ 
-          opacity,
-          y: y2
+        className="absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(circle at ${mousePosition.x * 0.5}px ${mousePosition.y * 0.5}px, var(--primary-400) 0%, transparent 50%),
+            radial-gradient(circle at ${mousePosition.x * 0.3}px ${mousePosition.y * 0.7}px, var(--secondary-400) 0%, transparent 50%),
+            var(--gradient-subtle)
+          `,
+        }}
+        animate={{
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut"
         }}
       />
 
-      {/* Additional decorative elements */}
-      {!shouldReduceMotion && (
-        <>
-          {/* Top gradient */}
+      {/* Grid Pattern */}
+      <motion.div
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `
+            linear-gradient(var(--glass-border) 1px, transparent 1px),
+            linear-gradient(90deg, var(--glass-border) 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px',
+        }}
+        animate={{
+          opacity: [0.02, 0.05, 0.02],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Floating Particles */}
+      {[...Array(particleCount)].map((_, i) => {
+        const size = Math.random() * (particleSize.max - particleSize.min) + particleSize.min;
+        const initialX = Math.random() * windowSize.width;
+        const initialY = Math.random() * windowSize.height;
+        const gradient = gradients[i % gradients.length];
+        const shape = i % 3 === 0 ? 'circle' : i % 3 === 1 ? 'rounded' : 'diamond';
+
+        return (
           <motion.div
-            className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-blue-500/5 via-purple-500/5 to-transparent"
-            style={{ y: y1 }}
+            key={i}
+            className="absolute"
+            style={{
+              width: size,
+              height: size,
+              left: initialX,
+              top: initialY,
+              background: gradient,
+              borderRadius: 
+                shape === 'circle' ? '50%' : 
+                shape === 'rounded' ? 'var(--radius-xl)' : 
+                '0',
+              transform: shape === 'diamond' ? 'rotate(45deg)' : 'none',
+              filter: 'blur(1px)',
+              opacity: 0.15,
+            }}
+            animate={{
+              x: [0, Math.random() * 100 - 50, Math.random() * 100 - 50, 0],
+              y: [0, Math.random() * 100 - 50, Math.random() * 100 - 50, 0],
+              scale: [1, 1.2, 0.8, 1],
+              rotate: shape === 'diamond' ? [45, 225, 405, 45] : [0, 180, 360, 0],
+              opacity: [0.1, 0.2, 0.05, 0.1],
+            }}
+            transition={{
+              duration: Math.random() * 20 + 15,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: Math.random() * 5,
+            }}
+          />
+        );
+      })}
+
+      {/* Ambient Light Effects */}
+      {variant === 'hero' && (
+        <>
+          <motion.div
+            className="absolute w-96 h-96 rounded-full"
+            style={{
+              background: 'radial-gradient(circle, var(--primary-400) 0%, transparent 70%)',
+              left: '10%',
+              top: '20%',
+              filter: 'blur(40px)',
+            }}
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.1, 0.3, 0.1],
+              x: [0, 50, 0],
+              y: [0, -30, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
           />
           
-          {/* Bottom gradient */}
           <motion.div
-            className="absolute bottom-0 left-0 w-full h-96 bg-gradient-to-t from-pink-500/5 via-yellow-500/5 to-transparent"
-            style={{ y: useTransform(scrollYProgress, [0, 1], [0, 50]) }}
-          />
-
-          {/* Side decorations */}
-          <motion.div
-            className="absolute left-0 top-1/4 w-96 h-96 bg-radial-gradient from-cyan-500/10 to-transparent rounded-full blur-3xl"
+            className="absolute w-80 h-80 rounded-full"
+            style={{
+              background: 'radial-gradient(circle, var(--secondary-400) 0%, transparent 70%)',
+              right: '15%',
+              bottom: '25%',
+              filter: 'blur(35px)',
+            }}
             animate={{
               scale: [1, 1.2, 1],
-              opacity: [0.3, 0.6, 0.3]
+              opacity: [0.1, 0.25, 0.1],
+              x: [0, -40, 0],
+              y: [0, 40, 0],
             }}
             transition={{
-              duration: 15,
+              duration: 10,
               repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          
-          <motion.div
-            className="absolute right-0 top-3/4 w-96 h-96 bg-radial-gradient from-pink-500/10 to-transparent rounded-full blur-3xl"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.6, 0.3, 0.6]
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
+              delay: 2
             }}
           />
         </>
       )}
 
-      {/* Content overlay */}
+      {/* Interactive Mouse Effect */}
+      <motion.div
+        className="absolute w-32 h-32 rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, var(--primary-500) 0%, transparent 70%)',
+          left: mousePosition.x - 64,
+          top: mousePosition.y - 64,
+          filter: 'blur(20px)',
+        }}
+        animate={{
+          scale: [0.5, 1, 0.5],
+          opacity: [0.1, 0.3, 0.1],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Content */}
       {children && (
         <div className="relative z-10">
           {children}
@@ -256,4 +217,4 @@ const AnimatedBackgroundEnhanced = ({
   );
 };
 
-export default React.memo(AnimatedBackgroundEnhanced);
+export default AnimatedBackgroundEnhanced;
