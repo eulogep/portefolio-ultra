@@ -1,5 +1,24 @@
 import { useEffect, useState, useCallback } from 'react';
-import { throttle } from 'lodash';
+
+// Simple throttle implementation to avoid lodash dependency
+const throttle = (func, delay) => {
+  let timeoutId;
+  let lastExecTime = 0;
+  return (...args) => {
+    const currentTime = Date.now();
+
+    if (currentTime - lastExecTime > delay) {
+      func(...args);
+      lastExecTime = currentTime;
+    } else {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func(...args);
+        lastExecTime = Date.now();
+      }, delay - (currentTime - lastExecTime));
+    }
+  };
+};
 
 export const useAdvancedScrollEffects = () => {
   const [scrollData, setScrollData] = useState({
