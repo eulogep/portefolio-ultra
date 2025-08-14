@@ -191,7 +191,7 @@ const ProjectsEnhanced = () => {
         </div>
 
         <p className="text-foreground/60 text-sm line-clamp-3 mb-4 leading-relaxed">
-          {project.description.split('\n')[0]}
+          {(project.pitch || project.description || '').split('\n')[0]}
         </p>
 
         {/* Project Stats */}
