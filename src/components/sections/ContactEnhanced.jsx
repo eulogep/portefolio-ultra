@@ -103,7 +103,7 @@ const ContactEnhanced = () => {
       title: "LinkedIn",
       value: "Euloge Mabiala",
       description: "Réseau professionnel",
-      href: personalInfo.linkedin,
+      href: personalInfo.links?.linkedin,
       color: "from-blue-500 to-cyan-500",
       hoverColor: "hover:from-blue-600 hover:to-cyan-600"
     },
