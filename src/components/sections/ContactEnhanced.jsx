@@ -112,7 +112,7 @@ const ContactEnhanced = () => {
       title: "GitHub",
       value: "@eulogep",
       description: "Projets & code",
-      href: personalInfo.github,
+      href: personalInfo.links?.github,
       color: "from-gray-600 to-gray-800",
       hoverColor: "hover:from-gray-700 hover:to-gray-900"
     },
