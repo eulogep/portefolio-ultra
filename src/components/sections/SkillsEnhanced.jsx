@@ -1,329 +1,322 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
-import { Code2, Database, Globe, Smartphone, Shield, Zap, Award, TrendingUp } from 'lucide-react';
-import { skills, tools, softSkills } from '@/data/portfolioData';
+import { 
+  Code2, 
+  Palette, 
+  Database, 
+  Zap, 
+  Brain, 
+  Cpu,
+  Globe,
+  Shield,
+  Rocket,
+  Settings
+} from 'lucide-react';
+import { skills, tools } from '@/data/portfolioData';
+import { useSmoothReveal } from '@/hooks/useAdvancedScrollEffects';
 
-const SkillsEnhanced = () => {
-  const [activeCategory, setActiveCategory] = useState('technical');
-  const [hoveredSkill, setHoveredSkill] = useState(null);
-  const controls = useAnimation();
-  const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+const categoryIcons = {
+  frontend: Palette,
+  backend: Database,
+  quality: Shield,
+  tools: Settings,
+  automation: Rocket,
+  mobile: Globe,
+  ai: Brain,
+  devops: Cpu,
+};
+
+const categoryColors = {
+  frontend: 'from-pink-400 to-rose-500',
+  backend: 'from-blue-400 to-indigo-500',
+  quality: 'from-green-400 to-emerald-500',
+  tools: 'from-gray-400 to-slate-500',
+  automation: 'from-purple-400 to-violet-500',
+  mobile: 'from-cyan-400 to-teal-500',
+  ai: 'from-orange-400 to-red-500',
+  devops: 'from-yellow-400 to-amber-500',
+};
+
+const SkillBar = ({ skill, index, isVisible }) => {
+  const [animatedLevel, setAnimatedLevel] = useState(0);
 
   useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
+    if (isVisible) {
+      const timer = setTimeout(() => {
+        setAnimatedLevel(skill.level);
+      }, index * 100);
+      return () => clearTimeout(timer);
     }
-  }, [controls, isInView]);
+  }, [isVisible, skill.level, index]);
 
-  const categories = [
-    { 
-      id: 'technical', 
-      label: 'Compétences Techniques', 
-      icon: Code2,
-      color: 'from-blue-500 to-cyan-500',
-      data: skills
-    },
-    { 
-      id: 'tools', 
-      label: 'Outils & Technologies', 
-      icon: Database,
-      color: 'from-purple-500 to-pink-500',
-      data: tools.map(tool => ({ name: tool, level: 85, color: '#8b5cf6' }))
-    },
-    { 
-      id: 'soft', 
-      label: 'Soft Skills', 
-      icon: Award,
-      color: 'from-green-500 to-emerald-500',
-      data: softSkills.map(skill => ({ name: skill, level: 90, color: '#10b981' }))
-    }
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12
-      }
-    }
-  };
-
-  const skillBarVariants = {
-    hidden: { width: 0 },
-    visible: (level) => ({
-      width: `${level}%`,
-      transition: {
-        duration: 1.5,
-        ease: "easeInOut",
-        delay: 0.5
-      }
-    })
-  };
-
-  const SkillCard = ({ skill, index }) => (
+  return (
     <motion.div
-      variants={itemVariants}
-      className="skill-card group relative p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300"
-      onMouseEnter={() => setHoveredSkill(skill.name)}
-      onMouseLeave={() => setHoveredSkill(null)}
-      whileHover={{ scale: 1.02, y: -5 }}
+      className="group"
+      initial={{ opacity: 0, x: -50 }}
+      animate={isVisible ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
     >
-      {/* Skill Header */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
           <div 
-            className="w-3 h-3 rounded-full"
-            style={{ backgroundColor: skill.color }}
+            className={`w-3 h-3 rounded-full bg-gradient-to-r ${categoryColors[skill.category] || 'from-gray-400 to-gray-500'}`}
           />
-          <h3 className="font-semibold text-lg text-foreground group-hover:text-white transition-colors">
+          <span className="font-medium text-foreground group-hover:text-primary-500 transition-colors">
             {skill.name}
-          </h3>
+          </span>
         </div>
-        <motion.div
-          className="text-2xl font-bold"
-          style={{ color: skill.color }}
-          animate={hoveredSkill === skill.name ? { scale: 1.2 } : { scale: 1 }}
+        <motion.span 
+          className="text-sm font-bold text-primary-500"
+          initial={{ scale: 0 }}
+          animate={isVisible ? { scale: 1 } : {}}
+          transition={{ duration: 0.3, delay: index * 0.1 + 0.5 }}
         >
-          {skill.level}%
-        </motion.div>
+          {animatedLevel}%
+        </motion.span>
       </div>
-
-      {/* Skill Bar */}
-      <div className="relative h-3 bg-gray-200/20 rounded-full overflow-hidden mb-4">
+      
+      <div className="relative h-3 bg-background-tertiary rounded-full overflow-hidden">
         <motion.div
-          className="absolute top-0 left-0 h-full rounded-full relative overflow-hidden"
-          style={{ 
-            background: `linear-gradient(90deg, ${skill.color}80, ${skill.color})`
+          className="absolute inset-y-0 left-0 rounded-full"
+          style={{
+            background: `linear-gradient(90deg, ${skill.color}30, ${skill.color})`,
           }}
-          variants={skillBarVariants}
-          custom={skill.level}
-          initial="hidden"
-          animate={controls}
+          initial={{ width: 0 }}
+          animate={{ width: isVisible ? `${animatedLevel}%` : 0 }}
+          transition={{ duration: 1.2, delay: index * 0.1, ease: "easeOut" }}
         >
-          {/* Shimmer Effect */}
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-            animate={{
-              x: ['-100%', '100%']
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatDelay: 3,
-              ease: "easeInOut"
-            }}
-          />
+            className="w-full h-full relative overflow-hidden rounded-full"
+            style={{ backgroundColor: skill.color }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30"
+              animate={{ x: ['-100%', '100%'] }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity, 
+                ease: "easeInOut",
+                delay: index * 0.1 + 1 
+              }}
+            />
+          </motion.div>
         </motion.div>
       </div>
+    </motion.div>
+  );
+};
 
-      {/* Skill Level Description */}
-      <div className="text-sm text-foreground/60">
-        {skill.level >= 90 ? 'Expert' : 
-         skill.level >= 80 ? 'Avancé' : 
-         skill.level >= 70 ? 'Intermédiaire' : 
-         'Débutant'}
+const SkillCategory = ({ category, categorySkills, isVisible }) => {
+  const Icon = categoryIcons[category] || Code2;
+  const gradient = categoryColors[category] || 'from-gray-400 to-gray-500';
+  
+  const averageLevel = Math.round(
+    categorySkills.reduce((sum, skill) => sum + skill.level, 0) / categorySkills.length
+  );
+
+  return (
+    <motion.div
+      className="card group relative overflow-hidden"
+      initial={{ opacity: 0, y: 50 }}
+      animate={isVisible ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6 }}
+      whileHover={{ y: -8, scale: 1.02 }}
+    >
+      {/* Header */}
+      <div className="flex items-center gap-4 mb-6">
+        <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${gradient} flex items-center justify-center`}>
+          <Icon className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h3 className="text-xl font-semibold text-foreground capitalize">
+            {category.replace('_', ' ')}
+          </h3>
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-foreground-secondary">
+              {categorySkills.length} compétences
+            </span>
+            <div className="w-1 h-1 bg-foreground-tertiary rounded-full" />
+            <span className="text-sm font-medium text-primary-500">
+              {averageLevel}% moyen
+            </span>
+          </div>
+        </div>
       </div>
 
-      {/* Hover Glow Effect */}
+      {/* Skills */}
+      <div className="space-y-4">
+        {categorySkills.map((skill, index) => (
+          <SkillBar 
+            key={skill.name} 
+            skill={skill} 
+            index={index} 
+            isVisible={isVisible} 
+          />
+        ))}
+      </div>
+
+      {/* Hover Effect */}
       <motion.div
-        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
         style={{
-          background: `radial-gradient(circle at center, ${skill.color}15 0%, transparent 70%)`,
-          filter: 'blur(10px)'
+          background: `linear-gradient(135deg, ${gradient.split(' ')[1]} 0%, transparent 50%)`,
+          mixBlendMode: 'overlay'
         }}
       />
     </motion.div>
   );
+};
 
-  const CategoryButton = ({ category, isActive, onClick }) => (
-    <motion.button
-      onClick={onClick}
-      className={`relative px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
-        isActive 
-          ? 'text-white shadow-lg' 
-          : 'text-foreground/70 hover:text-foreground bg-white/5 hover:bg-white/10'
-      }`}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+const ToolsCloud = ({ isVisible }) => {
+  return (
+    <motion.div
+      className="card"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+      transition={{ duration: 0.8, delay: 0.3 }}
     >
-      {isActive && (
-        <motion.div
-          className={`absolute inset-0 rounded-xl bg-gradient-to-r ${category.color}`}
-          layoutId="activeCategory"
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        />
-      )}
-      <span className="relative flex items-center gap-2">
-        <category.icon className="w-5 h-5" />
-        {category.label}
-      </span>
-    </motion.button>
+      <div className="flex items-center gap-4 mb-6">
+        <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
+          <Settings className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h3 className="text-xl font-semibold text-foreground">
+            Outils & Technologies
+          </h3>
+          <span className="text-sm text-foreground-secondary">
+            {tools.length} outils maîtrisés
+          </span>
+        </div>
+      </div>
+      
+      <div className="flex flex-wrap gap-2">
+        {tools.map((tool, index) => (
+          <motion.span
+            key={tool}
+            className="px-3 py-1.5 bg-glass-bg border border-glass-border rounded-full text-sm font-medium text-foreground-secondary hover:text-foreground hover:border-primary-400 transition-all duration-300 cursor-pointer"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.3, delay: index * 0.05 }}
+            whileHover={{ 
+              scale: 1.05, 
+              y: -2,
+              backgroundColor: 'var(--glass-border)',
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {tool}
+          </motion.span>
+        ))}
+      </div>
+    </motion.div>
   );
+};
 
-  const currentCategory = categories.find(cat => cat.id === activeCategory);
+const SkillsEnhanced = () => {
+  const [ref, isVisible] = useSmoothReveal(0.2);
+  
+  // Group skills by category
+  const skillsByCategory = skills.reduce((acc, skill) => {
+    if (!acc[skill.category]) {
+      acc[skill.category] = [];
+    }
+    acc[skill.category].push(skill);
+    return acc;
+  }, {});
+
+  // Calculate overall stats
+  const totalSkills = skills.length;
+  const averageLevel = Math.round(
+    skills.reduce((sum, skill) => sum + skill.level, 0) / totalSkills
+  );
+  const expertSkills = skills.filter(skill => skill.level >= 85).length;
 
   return (
-    <section 
-      ref={ref}
-      id="skills" 
-      className="py-20 relative overflow-hidden"
-    >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.3)_1px,transparent_0)] bg-[length:50px_50px]" />
+    <section id="skills" className="section relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(4)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="floating-shape absolute"
+            style={{
+              background: `var(--gradient-${['primary', 'secondary', 'tertiary'][i % 3]})`,
+              width: Math.random() * 120 + 60,
+              height: Math.random() * 120 + 60,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              borderRadius: '50%',
+            }}
+            animate={{
+              x: [0, Math.random() * 30 - 15],
+              y: [0, Math.random() * 30 - 15],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut"
+            }}
+          />
+        ))}
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div ref={ref} className="container relative z-10">
+        {/* Header */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={controls}
           className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
         >
-          <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full mb-6 border border-white/20"
-          >
-            <TrendingUp className="w-5 h-5 text-blue-400" />
-            <span className="text-sm font-medium text-foreground/80">Compétences & Expertise</span>
-          </motion.div>
-
-          <motion.h2
-            variants={itemVariants}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
-          >
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Mon Arsenal
-            </span>
-            <br />
-            <span className="text-foreground">Technologique</span>
-          </motion.h2>
-
-          <motion.p
-            variants={itemVariants}
-            className="text-lg text-foreground/60 max-w-3xl mx-auto leading-relaxed"
-          >
-            Une combinaison de compétences techniques solides, d'outils modernes 
-            et de soft skills essentiels pour créer des solutions innovantes.
-          </motion.p>
-        </motion.div>
-
-        {/* Category Selector */}
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-wrap justify-center gap-4 mb-12"
-        >
-          {categories.map((category) => (
-            <CategoryButton
-              key={category.id}
-              category={category}
-              isActive={activeCategory === category.id}
-              onClick={() => setActiveCategory(category.id)}
-            />
-          ))}
-        </motion.div>
-
-        {/* Skills Display */}
-        <motion.div
-          key={activeCategory}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="relative"
-        >
-          {/* Category Header */}
-          <motion.div
-            variants={itemVariants}
-            className="text-center mb-12"
-          >
-            <div className="inline-flex items-center gap-3 mb-4">
-              <div className={`p-3 rounded-xl bg-gradient-to-r ${currentCategory.color}`}>
-                <currentCategory.icon className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-foreground">
-                {currentCategory.label}
-              </h3>
-            </div>
-          </motion.div>
-
-          {/* Skills Grid */}
-          <motion.div
-            variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {currentCategory.data.map((skill, index) => (
-              <SkillCard key={skill.name} skill={skill} index={index} />
-            ))}
-          </motion.div>
-
-          {/* Skills Summary */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold gradient-text mb-6 text-balance">
+            Compétences & Expertise
+          </h2>
+          <p className="text-lg sm:text-xl text-foreground-secondary max-w-3xl mx-auto text-pretty mb-8">
+            Un aperçu détaillé de mes compétences techniques et de mon expertise dans différents domaines
+          </p>
+          
+          {/* Stats */}
+          <div className="flex flex-wrap justify-center gap-8">
             {[
-              { 
-                icon: Code2, 
-                title: "Langages Maîtrisés", 
-                value: skills.length,
-                color: "text-blue-400",
-                gradient: "from-blue-500/20 to-cyan-500/20"
-              },
-              { 
-                icon: Globe, 
-                title: "Projets Réalisés", 
-                value: "15+",
-                color: "text-purple-400",
-                gradient: "from-purple-500/20 to-pink-500/20"
-              },
-              { 
-                icon: Zap, 
-                title: "Années d'Expérience", 
-                value: "3+",
-                color: "text-green-400",
-                gradient: "from-green-500/20 to-emerald-500/20"
-              }
+              { value: totalSkills, label: 'Technologies', icon: Code2 },
+              { value: `${averageLevel}%`, label: 'Niveau moyen', icon: Zap },
+              { value: expertSkills, label: 'Expertises', icon: Brain },
             ].map((stat, index) => (
               <motion.div
-                key={index}
-                className={`text-center p-6 rounded-2xl bg-gradient-to-br ${stat.gradient} border border-white/10 backdrop-blur-sm`}
-                whileHover={{ scale: 1.05, y: -5 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                key={stat.label}
+                className="flex items-center gap-3"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
               >
-                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${
-                  index === 0 ? 'from-blue-500 to-cyan-500' :
-                  index === 1 ? 'from-purple-500 to-pink-500' :
-                  'from-green-500 to-emerald-500'
-                } mb-4`}>
-                  <stat.icon className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-xl bg-glass-bg border border-glass-border flex items-center justify-center">
+                  <stat.icon className="w-5 h-5 text-primary-500" />
                 </div>
-                <div className={`text-3xl font-bold ${stat.color} mb-2`}>
-                  {stat.value}
-                </div>
-                <div className="text-foreground/60 font-medium">
-                  {stat.title}
+                <div className="text-left">
+                  <div className="text-2xl font-bold text-foreground">{stat.value}</div>
+                  <div className="text-sm text-foreground-secondary">{stat.label}</div>
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </motion.div>
+
+        {/* Skills Grid */}
+        <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-12">
+          {Object.entries(skillsByCategory).map(([category, categorySkills]) => (
+            <SkillCategory
+              key={category}
+              category={category}
+              categorySkills={categorySkills}
+              isVisible={isVisible}
+            />
+          ))}
+        </div>
+
+        {/* Tools Section */}
+        <ToolsCloud isVisible={isVisible} />
       </div>
     </section>
   );
