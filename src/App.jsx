@@ -111,7 +111,6 @@ function App() {
   const cursorPosition = useCursorPosition();
   const { scrollData } = useAdvancedScrollEffects();
   const { toast } = useToast();
-  const [themeVars] = useThemeState();
   const [isThemeSelectorOpen, setIsThemeSelectorOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
