@@ -308,10 +308,10 @@ const ExperienceEnhanced = () => {
             className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6"
           >
             {activeTab === 'experience' ? [
-              { 
-                icon: Briefcase, 
-                title: "Expériences", 
-                value: experiences.length,
+              {
+                icon: Briefcase,
+                title: "Expériences",
+                value: experiences?.length || 0,
                 description: "Missions accomplies",
                 color: "from-blue-500 to-cyan-500"
               },
