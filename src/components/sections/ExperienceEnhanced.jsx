@@ -307,7 +307,7 @@ const ExperienceEnhanced = () => {
             variants={itemVariants}
             className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6"
           >
-            {activeTab === 'experience' ? [
+            {(activeTab === 'experience' ? [
               {
                 icon: Briefcase,
                 title: "Expériences",
@@ -315,16 +315,16 @@ const ExperienceEnhanced = () => {
                 description: "Missions accomplies",
                 color: "from-blue-500 to-cyan-500"
               },
-              { 
-                icon: Users, 
-                title: "Collaboration", 
+              {
+                icon: Users,
+                title: "Collaboration",
                 value: "8+",
                 description: "Collègues dans l'équipe",
                 color: "from-green-500 to-emerald-500"
               },
-              { 
-                icon: TrendingUp, 
-                title: "Croissance", 
+              {
+                icon: TrendingUp,
+                title: "Croissance",
                 value: "100%",
                 description: "Objectifs atteints",
                 color: "from-purple-500 to-pink-500"
@@ -337,21 +337,21 @@ const ExperienceEnhanced = () => {
                 description: "Formations complétées",
                 color: "from-blue-500 to-cyan-500"
               },
-              { 
-                icon: Star, 
-                title: "Spécialisations", 
+              {
+                icon: Star,
+                title: "Spécialisations",
                 value: "3",
                 description: "Domaines d'expertise",
                 color: "from-yellow-500 to-orange-500"
               },
-              { 
-                icon: CheckCircle, 
-                title: "Niveau", 
+              {
+                icon: CheckCircle,
+                title: "Niveau",
                 value: "Bac+5",
                 description: "En cours d'obtention",
                 color: "from-green-500 to-emerald-500"
               }
-            ].map((stat, index) => (
+            ]).map((stat, index) => (
               <motion.div
                 key={index}
                 className={`text-center p-6 rounded-2xl bg-gradient-to-br ${stat.color} bg-opacity-10 border border-white/10 backdrop-blur-sm`}
