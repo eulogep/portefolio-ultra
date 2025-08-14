@@ -290,7 +290,7 @@ const ProjectsEnhanced = () => {
 
           <div className="prose prose-invert max-w-none mb-8">
             <p className="text-gray-300 leading-relaxed whitespace-pre-line">
-              {project.description}
+              {project.pitch || project.description || 'Description non disponible'}
             </p>
           </div>
 
