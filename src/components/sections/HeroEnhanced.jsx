@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
-import { Github, Linkedin, Mail, Download, MapPin, Calendar, Coffee, Code, Sparkles } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Github, Linkedin, Mail, Download, MapPin, Calendar, Coffee, Code, Sparkles, ArrowRight, Star } from 'lucide-react';
 import { personalInfo } from '@/data/portfolioData';
 
 const HeroEnhanced = ({ scrollToSection, handleDownloadCV }) => {
@@ -30,20 +29,20 @@ const HeroEnhanced = ({ scrollToSection, handleDownloadCV }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1
+        staggerChildren: 0.15,
+        delayChildren: 0.2
       }
     }
   };
 
   const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
+    hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
         type: "spring",
-        stiffness: 100,
+        stiffness: 80,
         damping: 12
       }
     }
@@ -56,21 +55,9 @@ const HeroEnhanced = ({ scrollToSection, handleDownloadCV }) => {
       rotate: 0,
       transition: {
         type: "spring",
-        stiffness: 200,
+        stiffness: 150,
         damping: 15,
-        delay: 0.5
-      }
-    }
-  };
-
-  const sparkleVariants = {
-    animate: {
-      scale: [1, 1.2, 1],
-      rotate: [0, 180, 360],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        ease: "easeInOut"
+        delay: 0.3
       }
     }
   };
@@ -79,40 +66,51 @@ const HeroEnhanced = ({ scrollToSection, handleDownloadCV }) => {
     <section 
       ref={ref}
       id="home" 
-      className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden"
+      className="section relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{
         background: `
-          radial-gradient(circle at ${mousePosition.x * 0.1}px ${mousePosition.y * 0.1}px, rgba(96, 165, 250, 0.15) 0%, transparent 50%),
-          linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(244, 114, 182, 0.05) 50%, rgba(251, 191, 36, 0.05) 100%)
+          radial-gradient(circle at ${mousePosition.x * 0.08}px ${mousePosition.y * 0.08}px, var(--primary-400) 0%, transparent 50%),
+          var(--gradient-subtle)
         `
       }}
     >
-      {/* Enhanced Background Elements */}
+      {/* Modern Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Animated Grid */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-5 animate-pulse" />
+        <div className="absolute inset-0 opacity-5">
+          <div 
+            className="w-full h-full"
+            style={{
+              backgroundImage: `
+                linear-gradient(var(--glass-border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--glass-border) 1px, transparent 1px)
+              `,
+              backgroundSize: '60px 60px'
+            }}
+          />
+        </div>
         
-        {/* Floating Orbs */}
-        {[...Array(6)].map((_, i) => (
+        {/* Floating Geometric Shapes */}
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full blur-xl"
+            className="floating-shape absolute"
             style={{
-              background: `linear-gradient(45deg, ${
-                ['#60a5fa', '#f472b6', '#fbbf24', '#8b5cf6', '#06d6a0', '#f72585'][i]
-              }, transparent)`,
-              width: Math.random() * 400 + 100,
-              height: Math.random() * 400 + 100,
+              background: `var(--gradient-${['primary', 'secondary', 'tertiary'][i % 3]})`,
+              width: Math.random() * 200 + 80,
+              height: Math.random() * 200 + 80,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+              borderRadius: i % 2 ? '50%' : 'var(--radius-xl)',
             }}
             animate={{
-              x: [0, Math.random() * 100 - 50],
-              y: [0, Math.random() * 100 - 50],
+              x: [0, Math.random() * 60 - 30],
+              y: [0, Math.random() * 60 - 30],
+              rotate: [0, 360],
               scale: [1, 1.1, 1],
             }}
             transition={{
-              duration: Math.random() * 10 + 10,
+              duration: Math.random() * 15 + 10,
               repeat: Infinity,
               repeatType: "reverse",
               ease: "easeInOut"
@@ -121,37 +119,49 @@ const HeroEnhanced = ({ scrollToSection, handleDownloadCV }) => {
         ))}
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+      <div className="container relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={controls}
-          className="relative"
+          className="max-w-4xl mx-auto text-center"
         >
-          {/* Enhanced Glass Card */}
+          {/* Main Hero Card */}
           <motion.div
             variants={itemVariants}
-            className="modern-glass-card p-8 sm:p-12 lg:p-16 rounded-3xl shadow-2xl border border-white/20 backdrop-blur-2xl relative overflow-hidden"
+            className="glass-premium p-8 lg:p-12 rounded-3xl relative overflow-hidden"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            {/* Card Glow Effect */}
+            {/* Floating Elements */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl"
+              className="absolute top-6 right-6 text-yellow-400"
               animate={{
-                opacity: isHovered ? 0.8 : 0.4,
-                scale: isHovered ? 1.02 : 1,
+                scale: [1, 1.2, 1],
+                rotate: [0, 180, 360],
               }}
-              transition={{ duration: 0.3 }}
-            />
-
-            {/* Sparkles */}
-            <motion.div
-              variants={sparkleVariants}
-              animate="animate"
-              className="absolute top-4 right-4 text-yellow-400"
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
             >
               <Sparkles className="w-6 h-6" />
+            </motion.div>
+
+            <motion.div
+              className="absolute top-6 left-6 text-blue-400"
+              animate={{
+                y: [0, -10, 0],
+                opacity: [0.5, 1, 0.5]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <Star className="w-5 h-5" />
             </motion.div>
 
             {/* Avatar Section */}
@@ -160,174 +170,149 @@ const HeroEnhanced = ({ scrollToSection, handleDownloadCV }) => {
               className="mb-8 flex flex-col items-center relative"
             >
               <div className="relative group">
-                {/* Avatar Ring Effects */}
+                {/* Dynamic Gradient Ring */}
                 <motion.div
-                  className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-1"
+                  className="absolute inset-0 rounded-full p-1"
+                  style={{ background: 'var(--gradient-primary)' }}
                   animate={{
                     rotate: 360,
                   }}
                   transition={{
-                    duration: 8,
+                    duration: 10,
                     repeat: Infinity,
                     ease: "linear"
                   }}
                 >
-                  <div className="w-40 h-40 bg-background rounded-full" />
+                  <div className="w-36 h-36 bg-white rounded-full" />
                 </motion.div>
                 
                 <motion.div
-                  className="relative w-36 h-36 mx-auto"
+                  className="relative w-32 h-32 mx-auto"
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <img  
                     alt={`Photo de profil de ${personalInfo.name}`}
-                    className="w-full h-full rounded-full object-cover border-4 border-white shadow-2xl relative z-10"
+                    className="w-full h-full rounded-full object-cover border-4 border-white shadow-xl relative z-10"
                     src="/profile.jpg" 
                   />
-                  {/* Hover Overlay */}
+                  {/* Status Indicator */}
                   <motion.div
-                    className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500/30 to-purple-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
-                  />
-                </motion.div>
-
-                {/* Status Indicators */}
-                <motion.div
-                  className="absolute -bottom-2 -right-2 bg-green-500 w-8 h-8 rounded-full border-4 border-white shadow-lg flex items-center justify-center"
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <div className="w-2 h-2 bg-white rounded-full" />
+                    className="absolute -bottom-1 -right-1 bg-green-500 w-6 h-6 rounded-full border-3 border-white shadow-lg flex items-center justify-center"
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <div className="w-2 h-2 bg-white rounded-full" />
+                  </motion.div>
                 </motion.div>
               </div>
 
-              {/* Quick Info Cards */}
+              {/* Quick Info Badges */}
               <motion.div
                 variants={itemVariants}
                 className="mt-6 flex flex-wrap justify-center gap-2"
               >
                 {[
-                  { icon: MapPin, text: "Paris, France", color: "text-red-500" },
-                  { icon: Calendar, text: "Disponible", color: "text-green-500" },
-                  { icon: Coffee, text: "2 projets actifs", color: "text-amber-500" },
-                  { icon: Code, text: "5+ langages", color: "text-blue-500" }
+                  { icon: MapPin, text: "Paris, France", gradient: "from-red-400 to-pink-400" },
+                  { icon: Calendar, text: "Disponible", gradient: "from-green-400 to-emerald-400" },
+                  { icon: Coffee, text: "5+ projets", gradient: "from-amber-400 to-orange-400" },
+                  { icon: Code, text: "Full-stack", gradient: "from-blue-400 to-indigo-400" }
                 ].map((item, index) => (
                   <motion.div
                     key={index}
-                    className="flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm border border-white/20"
-                    whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.15)" }}
+                    className="glass px-3 py-1.5 rounded-full text-sm border flex items-center gap-2"
+                    whileHover={{ scale: 1.05, y: -2 }}
                     transition={{ type: "spring", stiffness: 400 }}
                   >
-                    <item.icon className={`w-4 h-4 ${item.color}`} />
-                    <span className="text-foreground/80">{item.text}</span>
+                    <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${item.gradient}`}>
+                      <item.icon className="w-3 h-3 text-white m-0.5" />
+                    </div>
+                    <span className="text-foreground-secondary font-medium">{item.text}</span>
                   </motion.div>
                 ))}
               </motion.div>
             </motion.div>
 
-            {/* Enhanced Name and Title */}
+            {/* Name and Title */}
             <motion.div variants={itemVariants} className="mb-8">
               <motion.h1
-                className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-4 relative"
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 gradient-text text-balance"
                 initial={{ backgroundPosition: "0% 50%" }}
                 animate={{ backgroundPosition: "100% 50%" }}
-                transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
-                style={{
-                  background: "linear-gradient(90deg, #60a5fa, #f472b6, #fbbf24, #8b5cf6, #60a5fa)",
-                  backgroundSize: "200% 100%",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text"
-                }}
+                transition={{ duration: 8, repeat: Infinity, repeatType: "reverse" }}
               >
                 {personalInfo.name}
               </motion.h1>
 
               <motion.div
                 variants={itemVariants}
-                className="text-xl sm:text-2xl lg:text-3xl text-foreground/70 mb-6 font-medium"
+                className="text-lg sm:text-xl lg:text-2xl text-foreground-secondary mb-6 font-medium text-balance"
               >
-                <span className="typing-enhanced">{personalInfo.title}</span>
+                {personalInfo.title}
               </motion.div>
 
               <motion.p
                 variants={itemVariants}
-                className="text-base sm:text-lg lg:text-xl text-foreground/60 max-w-4xl mx-auto leading-relaxed"
+                className="text-base sm:text-lg text-foreground-tertiary max-w-3xl mx-auto leading-relaxed text-pretty"
               >
                 {personalInfo.shortDescription}
               </motion.p>
             </motion.div>
 
-            {/* Enhanced Action Buttons */}
+            {/* Action Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
             >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  onClick={() => scrollToSection('projects')}
-                  size="lg"
-                  className="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl transition-all duration-300"
+              <motion.button
+                onClick={() => scrollToSection('projects')}
+                className="btn btn-primary btn-lg group"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span>Découvrir mes projets</span>
+                <motion.div
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
                 >
-                  <span className="relative z-10 flex items-center gap-2">
-                    Découvrir mes projets
-                    <motion.div
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      →
-                    </motion.div>
-                  </span>
-                  <motion.div
-                    className="absolute inset-0 bg-white/20 rounded-full"
-                    initial={{ scale: 0, opacity: 0 }}
-                    whileHover={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </Button>
-              </motion.div>
+                  <ArrowRight className="w-5 h-5" />
+                </motion.div>
+              </motion.button>
 
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  onClick={handleDownloadCV}
-                  variant="outline"
-                  size="lg"
-                  className="group relative overflow-hidden border-2 border-white/30 hover:border-white/50 bg-white/10 hover:bg-white/20 backdrop-blur-sm px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300"
-                >
-                  <span className="flex items-center gap-2">
-                    <Download className="w-5 h-5 group-hover:animate-bounce" />
-                    Télécharger CV
-                  </span>
-                </Button>
-              </motion.div>
+              <motion.button
+                onClick={handleDownloadCV}
+                className="btn btn-secondary btn-lg group"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Download className="w-5 h-5 group-hover:animate-bounce" />
+                <span>Télécharger CV</span>
+              </motion.button>
             </motion.div>
 
-            {/* Enhanced Social Links */}
+            {/* Social Links */}
             <motion.div
               variants={itemVariants}
-              className="flex justify-center space-x-6"
+              className="flex justify-center space-x-4"
             >
               {[
                 {
                   icon: Github,
                   href: personalInfo.links?.github,
                   label: "GitHub",
-                  color: "hover:bg-gray-800 hover:text-white",
-                  hoverRotate: 5
+                  gradient: "from-gray-700 to-gray-900"
                 },
                 {
                   icon: Linkedin,
                   href: personalInfo.links?.linkedin,
                   label: "LinkedIn",
-                  color: "hover:bg-blue-600 hover:text-white",
-                  hoverRotate: -5
+                  gradient: "from-blue-600 to-blue-800"
                 },
                 { 
                   icon: Mail, 
                   href: `mailto:${personalInfo.email}`, 
                   label: "Email",
-                  color: "hover:bg-red-500 hover:text-white",
-                  hoverRotate: 5
+                  gradient: "from-red-500 to-red-700"
                 }
               ].map((social, index) => (
                 <motion.a
@@ -335,61 +320,43 @@ const HeroEnhanced = ({ scrollToSection, handleDownloadCV }) => {
                   href={social.href}
                   target={social.href?.startsWith('mailto:') ? '_self' : '_blank'}
                   rel="noopener noreferrer"
-                  className={`group p-4 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 ${social.color}`}
+                  className="group glass p-3 rounded-xl border transition-all duration-300"
                   whileHover={{ 
                     scale: 1.1, 
-                    rotate: social.hoverRotate,
-                    y: -5
+                    y: -4,
+                    rotate: index % 2 ? 5 : -5
                   }}
                   whileTap={{ scale: 0.95 }}
                   aria-label={social.label}
                 >
-                  <social.icon className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
+                  <social.icon className="w-6 h-6 text-foreground-secondary group-hover:text-foreground transition-colors duration-300" />
                 </motion.a>
               ))}
             </motion.div>
           </motion.div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2, duration: 1 }}
+            className="mt-12 flex flex-col items-center"
+          >
+            <span className="text-sm text-foreground-tertiary mb-2">Découvrir plus</span>
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-6 h-10 border-2 border-foreground-tertiary rounded-full flex justify-center"
+            >
+              <motion.div
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-1 h-3 bg-foreground-tertiary rounded-full mt-2"
+              />
+            </motion.div>
+          </motion.div>
         </motion.div>
       </div>
-
-      <style>{`
-        .modern-glass-card {
-          background: rgba(255, 255, 255, 0.08);
-          backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          box-shadow: 
-            0 8px 32px rgba(0, 0, 0, 0.1),
-            inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        }
-
-        .bg-grid-pattern {
-          background-image: 
-            linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-          background-size: 50px 50px;
-        }
-
-        .typing-enhanced {
-          position: relative;
-        }
-
-        .typing-enhanced::after {
-          content: '|';
-          animation: blink 1s infinite;
-          color: #60a5fa;
-        }
-
-        @keyframes blink {
-          0%, 50% { opacity: 1; }
-          51%, 100% { opacity: 0; }
-        }
-
-        @media (max-width: 640px) {
-          .modern-glass-card {
-            padding: 2rem 1.5rem;
-          }
-        }
-      `}</style>
     </section>
   );
 };
