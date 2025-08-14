@@ -352,7 +352,7 @@ const HeroEnhanced = ({ scrollToSection, handleDownloadCV }) => {
         </motion.div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .modern-glass-card {
           background: rgba(255, 255, 255, 0.08);
           backdrop-filter: blur(20px);
