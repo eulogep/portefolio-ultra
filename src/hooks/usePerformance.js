@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useMemo } from 'react';
+import { useEffect, useCallback, useMemo, useRef, useState } from 'react';
 import { useInView } from 'framer-motion';
 
 // Hook for performance monitoring
