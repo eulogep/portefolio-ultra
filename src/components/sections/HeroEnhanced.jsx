@@ -333,7 +333,7 @@ const HeroEnhanced = ({ scrollToSection, handleDownloadCV }) => {
                 <motion.a
                   key={index}
                   href={social.href}
-                  target={social.href.startsWith('mailto:') ? '_self' : '_blank'}
+                  target={social.href?.startsWith('mailto:') ? '_self' : '_blank'}
                   rel="noopener noreferrer"
                   className={`group p-4 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 ${social.color}`}
                   whileHover={{ 
