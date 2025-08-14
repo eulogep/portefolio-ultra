@@ -407,7 +407,7 @@ const ContactEnhanced = () => {
                   <motion.a
                     key={index}
                     href={method.href}
-                    target={method.href.startsWith('mailto:') || method.href.startsWith('#') ? '_self' : '_blank'}
+                    target={method.href?.startsWith('mailto:') || method.href?.startsWith('#') ? '_self' : '_blank'}
                     rel="noopener noreferrer"
                     className="group flex items-center gap-4 p-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl transition-all duration-300"
                     whileHover={{ scale: 1.02, x: 5 }}
