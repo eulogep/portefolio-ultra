@@ -449,7 +449,7 @@ const ProjectsEnhanced = () => {
                 onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}
                 className="btn btn-ghost p-2"
               >
-                {viewMode === 'grid' ? <List className="w-4 h-4" /> : <Grid3X3 className="w-4 h-4" />}
+                {viewMode === 'grid' ? <List className="w-4 h-4" /> : <Grid3x3 className="w-4 h-4" />}
               </button>
               
               <button
