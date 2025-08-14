@@ -5,98 +5,98 @@ export const themes = {
   default: {
     name: 'Défaut',
     colors: {
-      primary: { h: 224, s: 90, l: 56 },      // Bleu
-      secondary: { h: 293, s: 84, l: 61 },    // Violet
-      tertiary: { h: 165, s: 84, l: 51 },     // Vert
-      accent: { h: 43, s: 96, l: 56 },        // Jaune
+      primary: { h: 224, s: 90, l: 56 }, // Bleu
+      secondary: { h: 293, s: 84, l: 61 }, // Violet
+      tertiary: { h: 165, s: 84, l: 51 }, // Vert
+      accent: { h: 43, s: 96, l: 56 }, // Jaune
     },
     properties: {
       borderRadius: 'rounded',
       glassIntensity: 0.08,
       particleCount: 8,
       animationSpeed: 'normal',
-    }
+    },
   },
   oceanic: {
     name: 'Océanique',
     colors: {
-      primary: { h: 195, s: 100, l: 50 },     // Cyan
-      secondary: { h: 240, s: 100, l: 67 },   // Bleu clair
-      tertiary: { h: 180, s: 100, l: 40 },    // Turquoise
-      accent: { h: 210, s: 100, l: 56 },      // Bleu océan
+      primary: { h: 195, s: 100, l: 50 }, // Cyan
+      secondary: { h: 240, s: 100, l: 67 }, // Bleu clair
+      tertiary: { h: 180, s: 100, l: 40 }, // Turquoise
+      accent: { h: 210, s: 100, l: 56 }, // Bleu océan
     },
     properties: {
       borderRadius: 'rounded-lg',
       glassIntensity: 0.12,
       particleCount: 12,
       animationSpeed: 'slow',
-    }
+    },
   },
   sunset: {
     name: 'Coucher de soleil',
     colors: {
-      primary: { h: 14, s: 100, l: 63 },      // Orange
-      secondary: { h: 340, s: 82, l: 52 },    // Rose
-      tertiary: { h: 45, s: 100, l: 51 },     // Jaune doré
-      accent: { h: 0, s: 84, l: 60 },         // Rouge corail
+      primary: { h: 14, s: 100, l: 63 }, // Orange
+      secondary: { h: 340, s: 82, l: 52 }, // Rose
+      tertiary: { h: 45, s: 100, l: 51 }, // Jaune doré
+      accent: { h: 0, s: 84, l: 60 }, // Rouge corail
     },
     properties: {
       borderRadius: 'rounded-xl',
       glassIntensity: 0.15,
       particleCount: 10,
       animationSpeed: 'fast',
-    }
+    },
   },
   forest: {
     name: 'Forêt',
     colors: {
-      primary: { h: 142, s: 76, l: 36 },      // Vert forêt
-      secondary: { h: 120, s: 60, l: 50 },    // Vert
-      tertiary: { h: 88, s: 50, l: 53 },      // Vert lime
-      accent: { h: 60, s: 100, l: 25 },       // Vert olive
+      primary: { h: 142, s: 76, l: 36 }, // Vert forêt
+      secondary: { h: 120, s: 60, l: 50 }, // Vert
+      tertiary: { h: 88, s: 50, l: 53 }, // Vert lime
+      accent: { h: 60, s: 100, l: 25 }, // Vert olive
     },
     properties: {
       borderRadius: 'rounded-2xl',
       glassIntensity: 0.06,
       particleCount: 6,
       animationSpeed: 'slow',
-    }
+    },
   },
   cyberpunk: {
     name: 'Cyberpunk',
     colors: {
-      primary: { h: 300, s: 100, l: 50 },     // Magenta
-      secondary: { h: 180, s: 100, l: 50 },   // Cyan électrique
-      tertiary: { h: 60, s: 100, l: 50 },     // Jaune néon
-      accent: { h: 0, s: 100, l: 50 },        // Rouge néon
+      primary: { h: 300, s: 100, l: 50 }, // Magenta
+      secondary: { h: 180, s: 100, l: 50 }, // Cyan électrique
+      tertiary: { h: 60, s: 100, l: 50 }, // Jaune néon
+      accent: { h: 0, s: 100, l: 50 }, // Rouge néon
     },
     properties: {
       borderRadius: 'rounded-sm',
-      glassIntensity: 0.20,
+      glassIntensity: 0.2,
       particleCount: 15,
       animationSpeed: 'fast',
-    }
+    },
   },
   monochrome: {
     name: 'Monochrome',
     colors: {
-      primary: { h: 0, s: 0, l: 20 },         // Gris foncé
-      secondary: { h: 0, s: 0, l: 40 },       // Gris moyen
-      tertiary: { h: 0, s: 0, l: 60 },        // Gris clair
-      accent: { h: 0, s: 0, l: 80 },          // Gris très clair
+      primary: { h: 0, s: 0, l: 20 }, // Gris foncé
+      secondary: { h: 0, s: 0, l: 40 }, // Gris moyen
+      tertiary: { h: 0, s: 0, l: 60 }, // Gris clair
+      accent: { h: 0, s: 0, l: 80 }, // Gris très clair
     },
     properties: {
       borderRadius: 'rounded-md',
-      glassIntensity: 0.10,
+      glassIntensity: 0.1,
       particleCount: 4,
       animationSpeed: 'normal',
-    }
-  }
+    },
+  },
 };
 
 // Convertir HSL en CSS
 const hslToCSS = (hsl, alpha = 1) => {
-  return alpha === 1 
+  return alpha === 1
     ? `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`
     : `hsla(${hsl.h}, ${hsl.s}%, ${hsl.l}%, ${alpha})`;
 };
@@ -105,15 +105,15 @@ const hslToCSS = (hsl, alpha = 1) => {
 const generateColorVariations = (baseColor) => {
   const variations = {};
   const lightness = [95, 90, 80, 65, 50, 40, 30, 20, 10, 5];
-  
+
   lightness.forEach((l, index) => {
     variations[`${(index + 1) * 100}`] = {
       h: baseColor.h,
       s: baseColor.s,
-      l: l
+      l: l,
     };
   });
-  
+
   return variations;
 };
 
@@ -139,7 +139,7 @@ export const useThemeState = () => {
     if (isSystemTheme) {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
       setIsDarkMode(mediaQuery.matches);
-      
+
       const handler = (e) => setIsDarkMode(e.matches);
       mediaQuery.addEventListener('change', handler);
       return () => mediaQuery.removeEventListener('change', handler);
@@ -150,39 +150,39 @@ export const useThemeState = () => {
   useEffect(() => {
     const theme = themes[currentTheme];
     const colors = customColors || theme.colors;
-    
+
     const root = document.documentElement;
-    
+
     // Appliquer les couleurs principales
     Object.entries(colors).forEach(([colorName, hsl]) => {
       const variations = generateColorVariations(hsl);
-      
+
       Object.entries(variations).forEach(([variant, color]) => {
-        root.style.setProperty(
-          `--${colorName}-${variant}`, 
-          hslToCSS(color)
-        );
+        root.style.setProperty(`--${colorName}-${variant}`, hslToCSS(color));
       });
-      
+
       // Couleur de base
       root.style.setProperty(`--${colorName}`, hslToCSS(hsl));
     });
-    
+
     // Appliquer les propriétés du thème
     Object.entries(theme.properties).forEach(([property, value]) => {
       root.style.setProperty(`--theme-${property}`, value);
     });
-    
+
     // Mode sombre/clair
     root.classList.toggle('dark', isDarkMode);
-    
+
     // Sauvegarder les préférences
-    localStorage.setItem('theme-preferences', JSON.stringify({
-      currentTheme,
-      customColors,
-      isDarkMode,
-      isSystemTheme
-    }));
+    localStorage.setItem(
+      'theme-preferences',
+      JSON.stringify({
+        currentTheme,
+        customColors,
+        isDarkMode,
+        isSystemTheme,
+      }),
+    );
   }, [currentTheme, customColors, isDarkMode, isSystemTheme]);
 
   // Charger les préférences sauvegardées
@@ -207,9 +207,9 @@ export const useThemeState = () => {
   };
 
   const updateCustomColor = (colorName, hsl) => {
-    setCustomColors(prev => ({
+    setCustomColors((prev) => ({
       ...(prev || themes[currentTheme].colors),
-      [colorName]: hsl
+      [colorName]: hsl,
     }));
   };
 
@@ -222,7 +222,7 @@ export const useThemeState = () => {
 
   const toggleDarkMode = () => {
     setIsSystemTheme(false);
-    setIsDarkMode(prev => !prev);
+    setIsDarkMode((prev) => !prev);
   };
 
   const setSystemTheme = () => {
@@ -235,13 +235,13 @@ export const useThemeState = () => {
       colors: customColors || themes[currentTheme].colors,
       properties: themes[currentTheme].properties,
       isDarkMode,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
-    
+
     const blob = new Blob([JSON.stringify(themeData, null, 2)], {
-      type: 'application/json'
+      type: 'application/json',
     });
-    
+
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -263,7 +263,7 @@ export const useThemeState = () => {
         setIsSystemTheme(false);
       }
     } catch (error) {
-      console.error('Erreur lors de l\'importation du thème:', error);
+      console.error("Erreur lors de l'importation du thème:", error);
     }
   };
 
@@ -274,7 +274,7 @@ export const useThemeState = () => {
     isDarkMode,
     isSystemTheme,
     availableThemes: themes,
-    
+
     // Actions
     changeTheme,
     updateCustomColor,
@@ -283,7 +283,7 @@ export const useThemeState = () => {
     setSystemTheme,
     exportTheme,
     importTheme,
-    
+
     // Utilitaires
     getCurrentColors: () => customColors || themes[currentTheme].colors,
     getCurrentProperties: () => themes[currentTheme].properties,
@@ -296,23 +296,29 @@ export const useThemeState = () => {
 export const useThemeAwareAnimations = () => {
   const { getCurrentProperties } = useAdvancedTheme();
   const properties = getCurrentProperties();
-  
+
   const getAnimationDuration = () => {
     switch (properties.animationSpeed) {
-      case 'fast': return { duration: 0.2 };
-      case 'slow': return { duration: 0.8 };
-      default: return { duration: 0.4 };
+      case 'fast':
+        return { duration: 0.2 };
+      case 'slow':
+        return { duration: 0.8 };
+      default:
+        return { duration: 0.4 };
     }
   };
-  
+
   const getStagger = () => {
     switch (properties.animationSpeed) {
-      case 'fast': return 0.05;
-      case 'slow': return 0.3;
-      default: return 0.1;
+      case 'fast':
+        return 0.05;
+      case 'slow':
+        return 0.3;
+      default:
+        return 0.1;
     }
   };
-  
+
   return {
     duration: getAnimationDuration(),
     stagger: getStagger(),
@@ -325,7 +331,7 @@ export const useThemeAwareAnimations = () => {
 export const useContextualColors = () => {
   const { getCurrentColors, isDarkMode } = useAdvancedTheme();
   const colors = getCurrentColors();
-  
+
   const getStatusColor = (status) => {
     const statusMap = {
       success: colors.tertiary,
@@ -335,18 +341,18 @@ export const useContextualColors = () => {
     };
     return statusMap[status] || colors.primary;
   };
-  
+
   const getContrastColor = (backgroundColor) => {
     // Calculer la luminosité et retourner blanc ou noir pour le contraste
-    const luminance = (backgroundColor.l / 100);
+    const luminance = backgroundColor.l / 100;
     return luminance > 0.5 ? { h: 0, s: 0, l: 0 } : { h: 0, s: 0, l: 100 };
   };
-  
+
   const getGradient = (colors, direction = '135deg') => {
-    const colorStops = colors.map(color => hslToCSS(color)).join(', ');
+    const colorStops = colors.map((color) => hslToCSS(color)).join(', ');
     return `linear-gradient(${direction}, ${colorStops})`;
   };
-  
+
   return {
     colors,
     isDarkMode,

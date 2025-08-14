@@ -37,15 +37,15 @@ const AnimatedBackgroundEnhanced = lazy(() => import('@/components/ui/AnimatedBa
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-screen">
     <div className="relative">
-      <motion.div 
+      <motion.div
         className="w-16 h-16 border-4 border-primary-200 border-t-primary-500 rounded-full"
         animate={{ rotate: 360 }}
-        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
       />
-      <motion.div 
+      <motion.div
         className="absolute inset-0 w-16 h-16 border-4 border-secondary-200 border-t-secondary-500 rounded-full"
         animate={{ rotate: -360 }}
-        transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
       />
     </div>
   </div>
@@ -64,9 +64,7 @@ const SkeletonLoader = () => (
 
 // Section wrapper for lazy loading with enhanced loading states
 const SectionWrapper = ({ children, fallback = <SkeletonLoader /> }) => (
-  <Suspense fallback={fallback}>
-    {children}
-  </Suspense>
+  <Suspense fallback={fallback}>{children}</Suspense>
 );
 
 // Floating Action Button for Theme Selector
@@ -78,22 +76,22 @@ const FloatingThemeButton = ({ onClick }) => (
     whileTap={{ scale: 0.9 }}
     initial={{ scale: 0, rotate: -180 }}
     animate={{ scale: 1, rotate: 0 }}
-    transition={{ type: "spring", stiffness: 300, damping: 20, delay: 2 }}
+    transition={{ type: 'spring', stiffness: 300, damping: 20, delay: 2 }}
   >
     <motion.div
       animate={{
         rotate: [0, 180, 360],
-        scale: [1, 1.2, 1]
+        scale: [1, 1.2, 1],
       }}
       transition={{
         duration: 4,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: 'easeInOut',
       }}
     >
       🎨
     </motion.div>
-    
+
     {/* Tooltip */}
     <motion.div
       className="absolute right-full mr-3 px-3 py-1 bg-black/80 text-white text-sm rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"
@@ -125,11 +123,11 @@ function App() {
     ];
 
     const preloadFonts = [
-      'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap'
+      'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap',
     ];
 
     // Preload images
-    const imagePromises = preloadImages.map(src => {
+    const imagePromises = preloadImages.map((src) => {
       return new Promise((resolve) => {
         const img = new Image();
         img.onload = resolve;
@@ -139,7 +137,7 @@ function App() {
     });
 
     // Preload fonts
-    const fontPromises = preloadFonts.map(href => {
+    const fontPromises = preloadFonts.map((href) => {
       return new Promise((resolve) => {
         const link = document.createElement('link');
         link.rel = 'preload';
@@ -153,11 +151,12 @@ function App() {
 
     // Initialize service worker for PWA
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(registration => {
+      navigator.serviceWorker
+        .register('/service-worker.js')
+        .then((registration) => {
           console.log('SW registered: ', registration);
         })
-        .catch(registrationError => {
+        .catch((registrationError) => {
           console.log('SW registration failed: ', registrationError);
         });
     }
@@ -171,7 +170,7 @@ function App() {
     window.addEventListener('error', (e) => {
       console.error('Global error:', e.error);
       toast({
-        title: "Une erreur est survenue",
+        title: 'Une erreur est survenue',
         description: "L'application a rencontré un problème inattendu.",
         duration: 5000,
       });
@@ -186,15 +185,15 @@ function App() {
     try {
       // Enhanced form submission with better UX
       toast({
-        title: "Message envoyé avec succès ! 🚀",
-        description: "Je vous répondrai dans les plus brefs délais. Merci pour votre intérêt !",
+        title: 'Message envoyé avec succès ! 🚀',
+        description: 'Je vous répondrai dans les plus brefs délais. Merci pour votre intérêt !',
         duration: 5000,
       });
       return { success: true };
     } catch (error) {
       toast({
         title: "Erreur lors de l'envoi",
-        description: "Une erreur est survenue. Veuillez réessayer ou me contacter directement.",
+        description: 'Une erreur est survenue. Veuillez réessayer ou me contacter directement.',
         duration: 5000,
       });
       return { success: false, error };
@@ -203,8 +202,8 @@ function App() {
 
   const handleDownloadCV = () => {
     toast({
-      title: "Téléchargement du CV 📄",
-      description: "Le CV sera bientôt disponible en téléchargement.",
+      title: 'Téléchargement du CV 📄',
+      description: 'Le CV sera bientôt disponible en téléchargement.',
       duration: 5000,
     });
   };
@@ -228,7 +227,7 @@ function App() {
             transition={{
               duration: 2,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: 'easeInOut',
             }}
           >
             <div className="w-full h-full rounded-full bg-gradient-to-r from-primary-500 via-secondary-500 to-tertiary-500 p-1">
@@ -242,7 +241,9 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <h2 className="text-xl font-semibold gradient-text">Portfolio en cours de chargement...</h2>
+            <h2 className="text-xl font-semibold gradient-text">
+              Portfolio en cours de chargement...
+            </h2>
             <p className="text-foreground-secondary mt-2">Préparation de l'expérience optimale</p>
           </motion.div>
         </motion.div>
@@ -255,31 +256,43 @@ function App() {
       <>
         <Helmet>
           <title>Euloge Mabiala - Portfolio | Étudiant Ingénieur Informatique & Développeur</title>
-          <meta name="description" content="Portfolio d'Euloge Mabiala, étudiant ingénieur informatique à l'ESIEA. Spécialisé en développement web, cybersécurité et intelligence artificielle. Découvrez mes projets et compétences." />
-          <meta name="keywords" content="Euloge Mabiala, développeur, ingénieur informatique, ESIEA, React, Python, JavaScript, portfolio, projets" />
+          <meta
+            name="description"
+            content="Portfolio d'Euloge Mabiala, étudiant ingénieur informatique à l'ESIEA. Spécialisé en développement web, cybersécurité et intelligence artificielle. Découvrez mes projets et compétences."
+          />
+          <meta
+            name="keywords"
+            content="Euloge Mabiala, développeur, ingénieur informatique, ESIEA, React, Python, JavaScript, portfolio, projets"
+          />
           <meta name="author" content="Euloge Mabiala" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          
+
           {/* Enhanced Open Graph */}
           <meta property="og:title" content="Euloge Mabiala - Portfolio Développeur" />
-          <meta property="og:description" content="Découvrez le portfolio d'Euloge Mabiala, étudiant ingénieur en informatique passionné par le développement et l'innovation." />
+          <meta
+            property="og:description"
+            content="Découvrez le portfolio d'Euloge Mabiala, étudiant ingénieur en informatique passionné par le développement et l'innovation."
+          />
           <meta property="og:type" content="website" />
           <meta property="og:image" content="/profile.jpg" />
           <meta property="og:url" content="https://eulogep.github.io/" />
-          
+
           {/* Enhanced Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="Euloge Mabiala - Portfolio Développeur" />
-          <meta name="twitter:description" content="Portfolio d'un étudiant ingénieur en informatique passionné par le développement web et l'IA." />
+          <meta
+            name="twitter:description"
+            content="Portfolio d'un étudiant ingénieur en informatique passionné par le développement web et l'IA."
+          />
           <meta name="twitter:image" content="/profile.jpg" />
-          
+
           {/* Progressive Web App */}
           <meta name="theme-color" content="#6366f1" />
           <meta name="application-name" content="Portfolio Euloge" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="default" />
           <meta name="apple-mobile-web-app-title" content="Portfolio Euloge" />
-          
+
           {/* Performance hints */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -288,18 +301,18 @@ function App() {
         </Helmet>
 
         {/* Enhanced Scroll Progress Bar */}
-        <motion.div 
+        <motion.div
           className="scroll-indicator fixed top-0 left-0 right-0 h-1 z-50"
           style={{
             scaleX: scrollProgress / 100,
             transformOrigin: 'left',
-            background: 'var(--gradient-rainbow)'
+            background: 'var(--gradient-rainbow)',
           }}
           initial={{ scaleX: 0 }}
           animate={{ scaleX: scrollProgress / 100 }}
         />
 
-        <motion.div 
+        <motion.div
           className="min-h-screen relative overflow-x-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -314,23 +327,20 @@ function App() {
           <MouseFollower size={24} />
           <CursorTrail cursorPosition={cursorPosition} />
           <FloatingShapes />
-          
+
           {/* Navigation */}
-          <Header 
-            darkMode={darkMode} 
-            toggleDarkMode={toggleDarkMode} 
-            activeSection={activeSection} 
-            scrollToSection={scrollToSection} 
+          <Header
+            darkMode={darkMode}
+            toggleDarkMode={toggleDarkMode}
+            activeSection={activeSection}
+            scrollToSection={scrollToSection}
           />
 
           {/* Main Content */}
           <main className="relative z-10">
             {/* Hero Section */}
             <SectionWrapper>
-              <HeroEnhanced 
-                scrollToSection={scrollToSection} 
-                handleDownloadCV={handleDownloadCV} 
-              />
+              <HeroEnhanced scrollToSection={scrollToSection} handleDownloadCV={handleDownloadCV} />
             </SectionWrapper>
 
             {/* About Section */}
@@ -373,10 +383,10 @@ function App() {
               <ContactEnhanced onSubmit={handleContactSubmit} />
             </SectionWrapper>
           </main>
-          
+
           {/* Footer */}
           <Footer />
-          
+
           {/* Enhanced UI Elements */}
           <BackToTopButton />
           <FloatingThemeButton onClick={() => setIsThemeSelectorOpen(true)} />
@@ -424,7 +434,7 @@ function App() {
                 
                 window.addEventListener('scroll', handleScroll, { passive: true });
               }
-            `
+            `,
           }}
         />
       </>

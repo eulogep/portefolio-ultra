@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useAnimation, useInView, AnimatePresence } from 'framer-motion';
-import { 
-  Github, 
-  ExternalLink, 
-  Filter, 
-  Search, 
+import {
+  Github,
+  ExternalLink,
+  Filter,
+  Search,
   Calendar,
   Code2,
   Star,
@@ -20,28 +20,38 @@ import {
   Grid3x3,
   List,
   SortAsc,
-  SortDesc
+  SortDesc,
 } from 'lucide-react';
 import { projects } from '@/data/portfolioData';
 import { useSmoothReveal } from '@/hooks/useAdvancedScrollEffects';
 
 const getStatusIcon = (status) => {
   switch (status) {
-    case 'fini': return <CheckCircle className="w-4 h-4 text-green-500" />;
-    case 'en cours': return <PlayCircle className="w-4 h-4 text-blue-500" />;
-    case 'élaboration': return <Clock className="w-4 h-4 text-yellow-500" />;
-    case 'prévu': return <Lightbulb className="w-4 h-4 text-purple-500" />;
-    default: return <Code2 className="w-4 h-4 text-gray-500" />;
+    case 'fini':
+      return <CheckCircle className="w-4 h-4 text-green-500" />;
+    case 'en cours':
+      return <PlayCircle className="w-4 h-4 text-blue-500" />;
+    case 'élaboration':
+      return <Clock className="w-4 h-4 text-yellow-500" />;
+    case 'prévu':
+      return <Lightbulb className="w-4 h-4 text-purple-500" />;
+    default:
+      return <Code2 className="w-4 h-4 text-gray-500" />;
   }
 };
 
 const getStatusColor = (status) => {
   switch (status) {
-    case 'fini': return 'from-green-400 to-emerald-500';
-    case 'en cours': return 'from-blue-400 to-indigo-500';
-    case 'élaboration': return 'from-yellow-400 to-orange-500';
-    case 'prévu': return 'from-purple-400 to-violet-500';
-    default: return 'from-gray-400 to-gray-500';
+    case 'fini':
+      return 'from-green-400 to-emerald-500';
+    case 'en cours':
+      return 'from-blue-400 to-indigo-500';
+    case 'élaboration':
+      return 'from-yellow-400 to-orange-500';
+    case 'prévu':
+      return 'from-purple-400 to-violet-500';
+    default:
+      return 'from-gray-400 to-gray-500';
   }
 };
 
@@ -63,11 +73,7 @@ const ProjectPreview = ({ project, onClose }) => {
       >
         {/* Header */}
         <div className="relative">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-64 object-cover"
-          />
+          <img src={project.image} alt={project.title} className="w-full h-64 object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           <button
             onClick={onClose}
@@ -78,9 +84,7 @@ const ProjectPreview = ({ project, onClose }) => {
           <div className="absolute bottom-4 left-4 right-4">
             <div className="flex items-center gap-2 mb-2">
               {getStatusIcon(project.status)}
-              <span className="text-white text-sm font-medium capitalize">
-                {project.status}
-              </span>
+              <span className="text-white text-sm font-medium capitalize">{project.status}</span>
               <span className="text-white/70 text-sm">• {project.year}</span>
             </div>
             <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
@@ -132,7 +136,10 @@ const ProjectPreview = ({ project, onClose }) => {
               <h4 className="text-lg font-semibold text-foreground mb-3">Impact & Métriques</h4>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {Object.entries(project.impact).map(([key, value]) => (
-                  <div key={key} className="text-center p-3 bg-glass-bg rounded-lg border border-glass-border">
+                  <div
+                    key={key}
+                    className="text-center p-3 bg-glass-bg rounded-lg border border-glass-border"
+                  >
                     <div className="text-lg font-bold text-primary-500">{value}</div>
                     <div className="text-sm text-foreground-secondary capitalize">{key}</div>
                   </div>
@@ -178,7 +185,7 @@ const ProjectPreview = ({ project, onClose }) => {
 
 const ProjectCard = ({ project, index, isVisible, onPreview }) => {
   const [isLiked, setIsLiked] = useState(false);
-  
+
   return (
     <motion.div
       className="card group relative overflow-hidden cursor-pointer"
@@ -196,9 +203,11 @@ const ProjectCard = ({ project, index, isVisible, onPreview }) => {
           className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
+
         {/* Status Badge */}
-        <div className={`absolute top-3 left-3 px-2 py-1 rounded-full bg-gradient-to-r ${getStatusColor(project.status)} text-white text-xs font-medium flex items-center gap-1`}>
+        <div
+          className={`absolute top-3 left-3 px-2 py-1 rounded-full bg-gradient-to-r ${getStatusColor(project.status)} text-white text-xs font-medium flex items-center gap-1`}
+        >
           {getStatusIcon(project.status)}
           <span className="capitalize">{project.status}</span>
         </div>
@@ -225,7 +234,7 @@ const ProjectCard = ({ project, index, isVisible, onPreview }) => {
           >
             <Heart className={`w-4 h-4 ${isLiked ? 'fill-current' : ''}`} />
           </motion.button>
-          
+
           {project.demo && (
             <motion.a
               href={project.demo}
@@ -250,7 +259,7 @@ const ProjectCard = ({ project, index, isVisible, onPreview }) => {
           </h3>
           <span className="text-sm text-foreground-tertiary">{project.year}</span>
         </div>
-        
+
         <p className="text-foreground-secondary text-sm line-clamp-3 leading-relaxed">
           {project.pitch}
         </p>
@@ -290,7 +299,7 @@ const ProjectCard = ({ project, index, isVisible, onPreview }) => {
             )}
             <span className="text-foreground-secondary text-sm">{project.category}</span>
           </div>
-          
+
           <motion.button
             className="text-primary-500 text-sm font-medium hover:text-primary-600 transition-colors"
             whileHover={{ x: 4 }}
@@ -313,27 +322,28 @@ const ProjectsEnhanced = () => {
   const [sortBy, setSortBy] = useState('year');
   const [sortOrder, setSortOrder] = useState('desc');
 
-  const categories = ['all', ...new Set(projects.map(p => p.category))];
-  const statuses = ['all', ...new Set(projects.map(p => p.status))];
+  const categories = ['all', ...new Set(projects.map((p) => p.category))];
+  const statuses = ['all', ...new Set(projects.map((p) => p.status))];
 
   useEffect(() => {
     let filtered = projects;
 
     // Filter by category
     if (selectedFilter !== 'all') {
-      filtered = filtered.filter(project => 
-        project.category === selectedFilter || project.status === selectedFilter
+      filtered = filtered.filter(
+        (project) => project.category === selectedFilter || project.status === selectedFilter,
       );
     }
 
     // Filter by search query
     if (searchQuery) {
-      filtered = filtered.filter(project =>
-        project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.technologies.some(tech => 
-          tech.toLowerCase().includes(searchQuery.toLowerCase())
-        ) ||
-        project.pitch.toLowerCase().includes(searchQuery.toLowerCase())
+      filtered = filtered.filter(
+        (project) =>
+          project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          project.technologies.some((tech) =>
+            tech.toLowerCase().includes(searchQuery.toLowerCase()),
+          ) ||
+          project.pitch.toLowerCase().includes(searchQuery.toLowerCase()),
       );
     }
 
@@ -341,12 +351,12 @@ const ProjectsEnhanced = () => {
     filtered.sort((a, b) => {
       let aValue = a[sortBy];
       let bValue = b[sortBy];
-      
+
       if (sortBy === 'year') {
         aValue = parseInt(aValue);
         bValue = parseInt(bValue);
       }
-      
+
       if (sortOrder === 'asc') {
         return aValue > bValue ? 1 : -1;
       } else {
@@ -381,8 +391,8 @@ const ProjectsEnhanced = () => {
             transition={{
               duration: Math.random() * 8 + 4,
               repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut"
+              repeatType: 'reverse',
+              ease: 'easeInOut',
             }}
           />
         ))}
@@ -449,14 +459,22 @@ const ProjectsEnhanced = () => {
                 onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}
                 className="btn btn-ghost p-2"
               >
-                {viewMode === 'grid' ? <List className="w-4 h-4" /> : <Grid3x3 className="w-4 h-4" />}
+                {viewMode === 'grid' ? (
+                  <List className="w-4 h-4" />
+                ) : (
+                  <Grid3x3 className="w-4 h-4" />
+                )}
               </button>
-              
+
               <button
                 onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
                 className="btn btn-ghost p-2"
               >
-                {sortOrder === 'asc' ? <SortAsc className="w-4 h-4" /> : <SortDesc className="w-4 h-4" />}
+                {sortOrder === 'asc' ? (
+                  <SortAsc className="w-4 h-4" />
+                ) : (
+                  <SortDesc className="w-4 h-4" />
+                )}
               </button>
             </div>
           </div>
@@ -464,7 +482,8 @@ const ProjectsEnhanced = () => {
           {/* Results Info */}
           <div className="mt-4 flex items-center justify-between text-sm text-foreground-secondary">
             <span>
-              {filteredProjects.length} projet{filteredProjects.length !== 1 ? 's' : ''} trouvé{filteredProjects.length !== 1 ? 's' : ''}
+              {filteredProjects.length} projet{filteredProjects.length !== 1 ? 's' : ''} trouvé
+              {filteredProjects.length !== 1 ? 's' : ''}
             </span>
             <div className="flex items-center gap-2">
               <TrendingUp className="w-4 h-4" />
@@ -474,11 +493,11 @@ const ProjectsEnhanced = () => {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className={`grid gap-8 ${
-          viewMode === 'grid' 
-            ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3' 
-            : 'grid-cols-1'
-        }`}>
+        <div
+          className={`grid gap-8 ${
+            viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3' : 'grid-cols-1'
+          }`}
+        >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
               <ProjectCard
@@ -514,10 +533,7 @@ const ProjectsEnhanced = () => {
       {/* Project Preview Modal */}
       <AnimatePresence>
         {selectedProject && (
-          <ProjectPreview
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
+          <ProjectPreview project={selectedProject} onClose={() => setSelectedProject(null)} />
         )}
       </AnimatePresence>
     </section>

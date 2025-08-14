@@ -14,34 +14,32 @@ import {
   Plus,
   Minus,
   Eye,
-  EyeOff
+  EyeOff,
 } from 'lucide-react';
 import { useAdvancedTheme, themes } from '@/hooks/useAdvancedTheme';
 import { MagneticButton, InteractiveCard } from './MicroInteractions';
 
 const ColorPicker = ({ label, color, onChange, disabled = false }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  
+
   const hslToRgb = (h, s, l) => {
     l /= 100;
-    const a = s * Math.min(l, 1 - l) / 100;
-    const f = n => {
+    const a = (s * Math.min(l, 1 - l)) / 100;
+    const f = (n) => {
       const k = (n + h / 30) % 12;
       const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
       return Math.round(255 * color);
     };
     return [f(0), f(8), f(4)];
   };
-  
+
   const [r, g, b] = hslToRgb(color.h, color.s, color.l);
   const hexColor = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <label className="text-sm font-medium text-foreground capitalize">
-          {label}
-        </label>
+        <label className="text-sm font-medium text-foreground capitalize">{label}</label>
         <motion.button
           onClick={() => setIsExpanded(!isExpanded)}
           className="p-1 rounded-md hover:bg-glass-bg transition-colors"
@@ -52,7 +50,7 @@ const ColorPicker = ({ label, color, onChange, disabled = false }) => {
           {isExpanded ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
         </motion.button>
       </div>
-      
+
       <div className="flex items-center gap-3">
         <div
           className="w-10 h-10 rounded-lg border-2 border-glass-border cursor-pointer overflow-hidden"
@@ -63,7 +61,7 @@ const ColorPicker = ({ label, color, onChange, disabled = false }) => {
           {hexColor.toUpperCase()}
         </div>
       </div>
-      
+
       <AnimatePresence>
         {isExpanded && (
           <motion.div
@@ -91,12 +89,12 @@ const ColorPicker = ({ label, color, onChange, disabled = false }) => {
                     hsl(180, ${color.s}%, ${color.l}%) 50%,
                     hsl(240, ${color.s}%, ${color.l}%) 67%,
                     hsl(300, ${color.s}%, ${color.l}%) 83%,
-                    hsl(360, ${color.s}%, ${color.l}%) 100%)`
+                    hsl(360, ${color.s}%, ${color.l}%) 100%)`,
                 }}
                 disabled={disabled}
               />
             </div>
-            
+
             {/* Saturation */}
             <div>
               <label className="text-xs text-foreground-tertiary">Saturation</label>
@@ -110,12 +108,12 @@ const ColorPicker = ({ label, color, onChange, disabled = false }) => {
                 style={{
                   background: `linear-gradient(to right, 
                     hsl(${color.h}, 0%, ${color.l}%),
-                    hsl(${color.h}, 100%, ${color.l}%))`
+                    hsl(${color.h}, 100%, ${color.l}%))`,
                 }}
                 disabled={disabled}
               />
             </div>
-            
+
             {/* Lightness */}
             <div>
               <label className="text-xs text-foreground-tertiary">Luminosité</label>
@@ -130,7 +128,7 @@ const ColorPicker = ({ label, color, onChange, disabled = false }) => {
                   background: `linear-gradient(to right, 
                     hsl(${color.h}, ${color.s}%, 0%),
                     hsl(${color.h}, ${color.s}%, 50%),
-                    hsl(${color.h}, ${color.s}%, 100%))`
+                    hsl(${color.h}, ${color.s}%, 100%))`,
                 }}
                 disabled={disabled}
               />
@@ -144,12 +142,12 @@ const ColorPicker = ({ label, color, onChange, disabled = false }) => {
 
 const ThemePreview = ({ theme, colors, isActive, onClick }) => {
   const previewColors = colors || theme.colors;
-  
+
   return (
     <motion.div
       className={`relative cursor-pointer overflow-hidden rounded-xl border-2 transition-all duration-300 ${
-        isActive 
-          ? 'border-primary-500 shadow-lg shadow-primary-500/25' 
+        isActive
+          ? 'border-primary-500 shadow-lg shadow-primary-500/25'
           : 'border-glass-border hover:border-glass-border'
       }`}
       onClick={onClick}
@@ -163,42 +161,46 @@ const ThemePreview = ({ theme, colors, isActive, onClick }) => {
           background: `linear-gradient(135deg, 
             hsl(${previewColors.primary.h}, ${previewColors.primary.s}%, ${previewColors.primary.l}%) 0%,
             hsl(${previewColors.secondary.h}, ${previewColors.secondary.s}%, ${previewColors.secondary.l}%) 50%,
-            hsl(${previewColors.tertiary.h}, ${previewColors.tertiary.s}%, ${previewColors.tertiary.l}%) 100%)`
+            hsl(${previewColors.tertiary.h}, ${previewColors.tertiary.s}%, ${previewColors.tertiary.l}%) 100%)`,
         }}
       >
         {/* Mini elements preview */}
         <div className="absolute inset-2 flex items-center justify-center gap-1">
           <div
             className="w-3 h-3 rounded-full"
-            style={{ backgroundColor: `hsl(${previewColors.primary.h}, ${previewColors.primary.s}%, ${previewColors.primary.l}%)` }}
+            style={{
+              backgroundColor: `hsl(${previewColors.primary.h}, ${previewColors.primary.s}%, ${previewColors.primary.l}%)`,
+            }}
           />
           <div
             className="w-3 h-3 rounded-full"
-            style={{ backgroundColor: `hsl(${previewColors.secondary.h}, ${previewColors.secondary.s}%, ${previewColors.secondary.l}%)` }}
+            style={{
+              backgroundColor: `hsl(${previewColors.secondary.h}, ${previewColors.secondary.s}%, ${previewColors.secondary.l}%)`,
+            }}
           />
           <div
             className="w-3 h-3 rounded-full"
-            style={{ backgroundColor: `hsl(${previewColors.tertiary.h}, ${previewColors.tertiary.s}%, ${previewColors.tertiary.l}%)` }}
+            style={{
+              backgroundColor: `hsl(${previewColors.tertiary.h}, ${previewColors.tertiary.s}%, ${previewColors.tertiary.l}%)`,
+            }}
           />
         </div>
-        
+
         {isActive && (
           <motion.div
             className="absolute top-1 right-1 w-6 h-6 rounded-full bg-white/90 flex items-center justify-center"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
           >
             <Check className="w-3 h-3 text-green-600" />
           </motion.div>
         )}
       </div>
-      
+
       {/* Theme name */}
       <div className="p-2 bg-glass-bg border-t border-glass-border">
-        <div className="text-xs font-medium text-foreground text-center">
-          {theme.name}
-        </div>
+        <div className="text-xs font-medium text-foreground text-center">{theme.name}</div>
       </div>
     </motion.div>
   );
@@ -218,7 +220,7 @@ const ThemeSelector = ({ isOpen, onClose }) => {
     setSystemTheme,
     exportTheme,
     importTheme,
-    getCurrentColors
+    getCurrentColors,
   } = useAdvancedTheme();
 
   const [activeTab, setActiveTab] = useState('presets');
@@ -233,7 +235,7 @@ const ThemeSelector = ({ isOpen, onClose }) => {
           const themeData = JSON.parse(e.target.result);
           importTheme(themeData);
         } catch (error) {
-          console.error('Erreur lors de l\'importation:', error);
+          console.error("Erreur lors de l'importation:", error);
         }
       };
       reader.readAsText(file);
@@ -382,7 +384,7 @@ const ThemeSelector = ({ isOpen, onClose }) => {
                       {isCustomizing ? 'Masquer' : 'Modifier'}
                     </motion.button>
                   </div>
-                  
+
                   {Object.entries(getCurrentColors()).map(([colorName, color]) => (
                     <ColorPicker
                       key={colorName}
@@ -398,14 +400,11 @@ const ThemeSelector = ({ isOpen, onClose }) => {
                 <div className="space-y-3">
                   <h3 className="text-sm font-medium text-foreground">Actions</h3>
                   <div className="grid grid-cols-2 gap-3">
-                    <MagneticButton
-                      onClick={exportTheme}
-                      className="btn btn-secondary"
-                    >
+                    <MagneticButton onClick={exportTheme} className="btn btn-secondary">
                       <Download className="w-4 h-4" />
                       Exporter
                     </MagneticButton>
-                    
+
                     <label className="btn btn-secondary cursor-pointer">
                       <Upload className="w-4 h-4" />
                       Importer
@@ -416,11 +415,8 @@ const ThemeSelector = ({ isOpen, onClose }) => {
                         className="hidden"
                       />
                     </label>
-                    
-                    <MagneticButton
-                      onClick={resetToDefault}
-                      className="btn btn-ghost col-span-2"
-                    >
+
+                    <MagneticButton onClick={resetToDefault} className="btn btn-ghost col-span-2">
                       <RotateCcw className="w-4 h-4" />
                       Réinitialiser
                     </MagneticButton>

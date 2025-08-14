@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  Quote, 
+import {
+  ChevronLeft,
+  ChevronRight,
+  Quote,
   Star,
   Play,
   Pause,
   User,
   Briefcase,
-  Calendar
+  Calendar,
 } from 'lucide-react';
 import { testimonials } from '@/data/portfolioData';
 import { useSmoothReveal } from '@/hooks/useAdvancedScrollEffects';
 
 const TestimonialCard = ({ testimonial, isActive }) => {
   const [imageError, setImageError] = useState(false);
-  
+
   const renderStars = (rating) => {
     return [...Array(5)].map((_, i) => (
       <motion.div
@@ -25,10 +25,8 @@ const TestimonialCard = ({ testimonial, isActive }) => {
         animate={{ scale: 1, rotate: 0 }}
         transition={{ duration: 0.3, delay: i * 0.1 }}
       >
-        <Star 
-          className={`w-4 h-4 ${
-            i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
-          }`} 
+        <Star
+          className={`w-4 h-4 ${i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
         />
       </motion.div>
     ));
@@ -39,21 +37,21 @@ const TestimonialCard = ({ testimonial, isActive }) => {
       className="glass-premium p-8 rounded-2xl relative overflow-hidden h-full"
       layout
       initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ 
-        opacity: isActive ? 1 : 0.7, 
+      animate={{
+        opacity: isActive ? 1 : 0.7,
         scale: isActive ? 1 : 0.95,
-        y: isActive ? 0 : 20
+        y: isActive ? 0 : 20,
       }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
     >
       {/* Decorative Quote */}
       <motion.div
         className="absolute top-4 right-4 opacity-10"
-        animate={{ 
+        animate={{
           rotate: [0, 10, 0],
-          scale: [1, 1.1, 1]
+          scale: [1, 1.1, 1],
         }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
       >
         <Quote className="w-16 h-16" />
       </motion.div>
@@ -61,7 +59,7 @@ const TestimonialCard = ({ testimonial, isActive }) => {
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col">
         {/* Rating */}
-        <motion.div 
+        <motion.div
           className="flex items-center gap-1 mb-4"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -99,7 +97,7 @@ const TestimonialCard = ({ testimonial, isActive }) => {
               <User className="w-6 h-6 text-white" />
             )}
           </div>
-          
+
           <div className="flex-1">
             <div className="font-semibold text-foreground">{testimonial.name}</div>
             <div className="text-sm text-foreground-secondary flex items-center gap-2">
@@ -107,9 +105,7 @@ const TestimonialCard = ({ testimonial, isActive }) => {
               {testimonial.role}
             </div>
             {testimonial.company && (
-              <div className="text-xs text-foreground-tertiary">
-                {testimonial.company}
-              </div>
+              <div className="text-xs text-foreground-tertiary">{testimonial.company}</div>
             )}
           </div>
         </motion.div>
@@ -119,7 +115,8 @@ const TestimonialCard = ({ testimonial, isActive }) => {
       <motion.div
         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{
-          background: 'linear-gradient(135deg, var(--primary-500), var(--secondary-500), var(--tertiary-500))',
+          background:
+            'linear-gradient(135deg, var(--primary-500), var(--secondary-500), var(--tertiary-500))',
           padding: '2px',
         }}
         animate={{
@@ -128,9 +125,9 @@ const TestimonialCard = ({ testimonial, isActive }) => {
             'linear-gradient(135deg, var(--secondary-500), var(--tertiary-500))',
             'linear-gradient(135deg, var(--tertiary-500), var(--primary-500))',
             'linear-gradient(135deg, var(--primary-500), var(--secondary-500))',
-          ]
+          ],
         }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
       >
         <div className="w-full h-full bg-background rounded-2xl" />
       </motion.div>
@@ -147,7 +144,7 @@ const TestimonialsCarousel = () => {
   // Auto-advance carousel
   useEffect(() => {
     if (!isAutoPlaying || !isVisible) return;
-    
+
     const interval = setInterval(() => {
       setDirection(1);
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
@@ -199,8 +196,8 @@ const TestimonialsCarousel = () => {
             transition={{
               duration: Math.random() * 6 + 4,
               repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut"
+              repeatType: 'reverse',
+              ease: 'easeInOut',
             }}
           />
         ))}
@@ -235,33 +232,30 @@ const TestimonialsCarousel = () => {
               <motion.div
                 key={currentIndex}
                 custom={direction}
-                initial={{ 
-                  opacity: 0, 
+                initial={{
+                  opacity: 0,
                   x: direction > 0 ? 300 : -300,
-                  rotateY: direction > 0 ? 45 : -45
+                  rotateY: direction > 0 ? 45 : -45,
                 }}
-                animate={{ 
-                  opacity: 1, 
+                animate={{
+                  opacity: 1,
                   x: 0,
-                  rotateY: 0
+                  rotateY: 0,
                 }}
-                exit={{ 
-                  opacity: 0, 
+                exit={{
+                  opacity: 0,
                   x: direction > 0 ? -300 : 300,
-                  rotateY: direction > 0 ? -45 : 45
+                  rotateY: direction > 0 ? -45 : 45,
                 }}
-                transition={{ 
-                  duration: 0.5, 
-                  ease: "easeInOut",
-                  opacity: { duration: 0.3 }
+                transition={{
+                  duration: 0.5,
+                  ease: 'easeInOut',
+                  opacity: { duration: 0.3 },
                 }}
                 className="absolute inset-0"
                 style={{ perspective: '1000px' }}
               >
-                <TestimonialCard 
-                  testimonial={testimonials[currentIndex]} 
-                  isActive={true}
-                />
+                <TestimonialCard testimonial={testimonials[currentIndex]} isActive={true} />
               </motion.div>
             </AnimatePresence>
           </div>
@@ -284,11 +278,7 @@ const TestimonialsCarousel = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              {isAutoPlaying ? (
-                <Pause className="w-5 h-5" />
-              ) : (
-                <Play className="w-5 h-5" />
-              )}
+              {isAutoPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
             </motion.button>
 
             <motion.button
@@ -326,7 +316,7 @@ const TestimonialsCarousel = () => {
               initial={{ width: 0 }}
               animate={{ width: '100%' }}
               key={currentIndex}
-              transition={{ duration: 5, ease: "linear" }}
+              transition={{ duration: 5, ease: 'linear' }}
             />
           )}
         </motion.div>
@@ -339,23 +329,26 @@ const TestimonialsCarousel = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           {[
-            { 
-              value: testimonials.length, 
-              label: 'Témoignages', 
+            {
+              value: testimonials.length,
+              label: 'Témoignages',
               icon: Quote,
-              gradient: 'from-blue-400 to-indigo-500'
+              gradient: 'from-blue-400 to-indigo-500',
             },
-            { 
-              value: Math.round(testimonials.reduce((sum, t) => sum + t.rating, 0) / testimonials.length * 10) / 10, 
-              label: 'Note moyenne', 
+            {
+              value:
+                Math.round(
+                  (testimonials.reduce((sum, t) => sum + t.rating, 0) / testimonials.length) * 10,
+                ) / 10,
+              label: 'Note moyenne',
               icon: Star,
-              gradient: 'from-yellow-400 to-orange-500'
+              gradient: 'from-yellow-400 to-orange-500',
             },
-            { 
-              value: '100%', 
-              label: 'Satisfaction', 
+            {
+              value: '100%',
+              label: 'Satisfaction',
               icon: User,
-              gradient: 'from-green-400 to-emerald-500'
+              gradient: 'from-green-400 to-emerald-500',
             },
           ].map((stat, index) => (
             <motion.div
@@ -366,15 +359,13 @@ const TestimonialsCarousel = () => {
               transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
               whileHover={{ y: -4, scale: 1.02 }}
             >
-              <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${stat.gradient} flex items-center justify-center mx-auto mb-3`}>
+              <div
+                className={`w-12 h-12 rounded-xl bg-gradient-to-r ${stat.gradient} flex items-center justify-center mx-auto mb-3`}
+              >
                 <stat.icon className="w-6 h-6 text-white" />
               </div>
-              <div className="text-2xl font-bold text-foreground mb-1">
-                {stat.value}
-              </div>
-              <div className="text-sm text-foreground-secondary">
-                {stat.label}
-              </div>
+              <div className="text-2xl font-bold text-foreground mb-1">{stat.value}</div>
+              <div className="text-sm text-foreground-secondary">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>

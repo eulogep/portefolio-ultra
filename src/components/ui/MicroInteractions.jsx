@@ -6,20 +6,20 @@ export const useMagneticHover = (strength = 0.3) => {
   const [isHovered, setIsHovered] = useState(false);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  
+
   const springX = useSpring(x, { stiffness: 300, damping: 30 });
   const springY = useSpring(y, { stiffness: 300, damping: 30 });
 
   const handleMouseMove = (e) => {
     if (!isHovered) return;
-    
+
     const rect = e.currentTarget.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
-    
+
     const deltaX = (e.clientX - centerX) * strength;
     const deltaY = (e.clientY - centerY) * strength;
-    
+
     x.set(deltaX);
     y.set(deltaY);
   };
@@ -40,17 +40,17 @@ export const useMagneticHover = (strength = 0.3) => {
     handleMouseMove,
     handleMouseEnter,
     handleMouseLeave,
-    isHovered
+    isHovered,
   };
 };
 
 // Composant Button avec effet magnétique
-export const MagneticButton = ({ 
-  children, 
-  className = '', 
-  strength = 0.2, 
+export const MagneticButton = ({
+  children,
+  className = '',
+  strength = 0.2,
   glowColor = 'var(--primary-500)',
-  ...props 
+  ...props
 }) => {
   const magnetic = useMagneticHover(strength);
   const [ripples, setRipples] = useState([]);
@@ -59,17 +59,17 @@ export const MagneticButton = ({
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     const newRipple = {
       id: Date.now(),
       x,
       y,
     };
-    
-    setRipples(prev => [...prev, newRipple]);
-    
+
+    setRipples((prev) => [...prev, newRipple]);
+
     setTimeout(() => {
-      setRipples(prev => prev.filter(ripple => ripple.id !== newRipple.id));
+      setRipples((prev) => prev.filter((ripple) => ripple.id !== newRipple.id));
     }, 600);
   };
 
@@ -88,7 +88,7 @@ export const MagneticButton = ({
       {...props}
     >
       {children}
-      
+
       {/* Glow effect */}
       <motion.div
         className="absolute inset-0 rounded-inherit opacity-0 pointer-events-none"
@@ -101,9 +101,9 @@ export const MagneticButton = ({
         }}
         transition={{ duration: 0.3 }}
       />
-      
+
       {/* Ripple effects */}
-      {ripples.map(ripple => (
+      {ripples.map((ripple) => (
         <motion.div
           key={ripple.id}
           className="absolute rounded-full pointer-events-none"
@@ -114,7 +114,7 @@ export const MagneticButton = ({
           }}
           initial={{ scale: 0, opacity: 1 }}
           animate={{ scale: 4, opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         />
       ))}
     </motion.button>
@@ -125,53 +125,53 @@ export const MagneticButton = ({
 export const useParallaxHover = (intensity = 10) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
-  
+
   const handleMouseMove = (e) => {
     if (!isHovered) return;
-    
+
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
     const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
-    
+
     setMousePosition({ x: x * intensity, y: y * intensity });
   };
-  
+
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => {
     setIsHovered(false);
     setMousePosition({ x: 0, y: 0 });
   };
-  
+
   return {
     transform: `translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0)`,
     handleMouseMove,
     handleMouseEnter,
     handleMouseLeave,
-    isHovered
+    isHovered,
   };
 };
 
 // Composant Card avec effets hover avancés
-export const InteractiveCard = ({ 
-  children, 
-  className = '', 
+export const InteractiveCard = ({
+  children,
+  className = '',
   glowIntensity = 0.3,
   parallaxIntensity = 8,
-  ...props 
+  ...props
 }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
-  
+
   const handleMouseMove = (e) => {
     if (!isHovered) return;
-    
+
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
-    
+
     setMousePosition({ x, y });
   };
-  
+
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => {
     setIsHovered(false);
@@ -185,7 +185,7 @@ export const InteractiveCard = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       whileHover={{ y: -8, scale: 1.02 }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       {...props}
     >
       {/* Gradient overlay effect */}
@@ -199,12 +199,12 @@ export const InteractiveCard = ({
         }}
         transition={{ duration: 0.3 }}
       />
-      
+
       {/* Border glow effect */}
       <motion.div
         className="absolute inset-0 rounded-inherit pointer-events-none"
         style={{
-          background: `linear-gradient(${Math.atan2(mousePosition.y - 0.5, mousePosition.x - 0.5) * 180 / Math.PI + 90}deg, var(--primary-500), var(--secondary-500), var(--tertiary-500))`,
+          background: `linear-gradient(${(Math.atan2(mousePosition.y - 0.5, mousePosition.x - 0.5) * 180) / Math.PI + 90}deg, var(--primary-500), var(--secondary-500), var(--tertiary-500))`,
           padding: '1px',
           opacity: 0,
         }}
@@ -215,7 +215,7 @@ export const InteractiveCard = ({
       >
         <div className="w-full h-full bg-background rounded-inherit" />
       </motion.div>
-      
+
       {/* Content with parallax */}
       <motion.div
         className="relative z-10"
@@ -223,7 +223,7 @@ export const InteractiveCard = ({
           x: isHovered ? (mousePosition.x - 0.5) * parallaxIntensity : 0,
           y: isHovered ? (mousePosition.y - 0.5) * parallaxIntensity : 0,
         }}
-        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
       >
         {children}
       </motion.div>
@@ -232,27 +232,24 @@ export const InteractiveCard = ({
 };
 
 // Composant de texte avec effet de typewriter
-export const TypewriterText = ({ 
-  text, 
-  delay = 0, 
-  speed = 50, 
-  className = '',
-  cursor = true 
-}) => {
+export const TypewriterText = ({ text, delay = 0, speed = 50, className = '', cursor = true }) => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showCursor, setShowCursor] = useState(cursor);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (currentIndex < text.length) {
-        setDisplayText(prev => prev + text[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      } else if (cursor) {
-        // Cursor blinking effect
-        setTimeout(() => setShowCursor(false), 500);
-      }
-    }, delay + (currentIndex * speed));
+    const timeout = setTimeout(
+      () => {
+        if (currentIndex < text.length) {
+          setDisplayText((prev) => prev + text[currentIndex]);
+          setCurrentIndex((prev) => prev + 1);
+        } else if (cursor) {
+          // Cursor blinking effect
+          setTimeout(() => setShowCursor(false), 500);
+        }
+      },
+      delay + currentIndex * speed,
+    );
 
     return () => clearTimeout(timeout);
   }, [currentIndex, text, delay, speed, cursor]);
@@ -263,7 +260,7 @@ export const TypewriterText = ({
       {showCursor && (
         <motion.span
           animate={{ opacity: [1, 0] }}
-          transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
+          transition={{ duration: 0.8, repeat: Infinity, repeatType: 'reverse' }}
           className="inline-block ml-1"
         >
           |
@@ -312,7 +309,7 @@ export const MouseFollower = ({ size = 20, color = 'var(--primary-500)' }) => {
         opacity: isVisible ? 0.6 : 0,
       }}
       transition={{
-        type: "spring",
+        type: 'spring',
         stiffness: 500,
         damping: 30,
       }}
@@ -332,8 +329,8 @@ export const useShakeAnimation = () => {
   const shakeVariants = {
     shake: {
       x: [0, -10, 10, -10, 10, 0],
-      transition: { duration: 0.5 }
-    }
+      transition: { duration: 0.5 },
+    },
   };
 
   return { isShaking, triggerShake, shakeVariants };
@@ -345,7 +342,7 @@ export const MorphingIcon = ({ icons, interval = 3000, className = '' }) => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIcon(prev => (prev + 1) % icons.length);
+      setCurrentIcon((prev) => (prev + 1) % icons.length);
     }, interval);
 
     return () => clearInterval(timer);
@@ -363,7 +360,7 @@ export const MorphingIcon = ({ icons, interval = 3000, className = '' }) => {
             scale: index === currentIcon ? 1 : 0.5,
             rotate: index === currentIcon ? 0 : 180,
           }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
         >
           <Icon />
         </motion.div>
@@ -398,30 +395,31 @@ export const ParticleHover = ({ children, particleCount = 6 }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       {children}
-      
-      {isHovered && particles.map(particle => (
-        <motion.div
-          key={particle.id}
-          className="absolute rounded-full bg-primary-400 pointer-events-none"
-          style={{
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            width: particle.size,
-            height: particle.size,
-          }}
-          initial={{ scale: 0, opacity: 1 }}
-          animate={{
-            scale: [0, 1.5, 0],
-            opacity: [1, 0.6, 0],
-            y: [-20, -40, -60],
-          }}
-          transition={{
-            duration: 1.5,
-            delay: particle.delay,
-            ease: "easeOut"
-          }}
-        />
-      ))}
+
+      {isHovered &&
+        particles.map((particle) => (
+          <motion.div
+            key={particle.id}
+            className="absolute rounded-full bg-primary-400 pointer-events-none"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: particle.size,
+              height: particle.size,
+            }}
+            initial={{ scale: 0, opacity: 1 }}
+            animate={{
+              scale: [0, 1.5, 0],
+              opacity: [1, 0.6, 0],
+              y: [-20, -40, -60],
+            }}
+            transition={{
+              duration: 1.5,
+              delay: particle.delay,
+              ease: 'easeOut',
+            }}
+          />
+        ))}
     </div>
   );
 };
