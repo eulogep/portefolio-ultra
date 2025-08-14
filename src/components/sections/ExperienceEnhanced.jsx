@@ -359,7 +359,7 @@ const ExperienceEnhanced = () => {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${stat.color} mb-4`}>
-                  <stat.icon className="w-6 h-6 text-white" />
+                  {React.createElement(stat.icon, { className: "w-6 h-6 text-white" })}
                 </div>
                 <div className="text-3xl font-bold text-white mb-2">
                   {stat.value}
