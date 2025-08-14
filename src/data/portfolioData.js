@@ -59,7 +59,7 @@ export const skills = [
 
 export const softSkills = [
   'Orientation produit',
-  'Esprit d'équipe',
+  'Esprit d\'équipe',
   'Pédagogie',
   'Curiosité technique',
   'Résolution de problèmes',
@@ -97,26 +97,16 @@ export const experiences = [
     date: 'Sept 2024 – Jan 2025',
     title: 'Employé Polyvalent',
     institution: 'Five Guys',
-    description:
-      'Flux tendu, priorisation, qualité de service. Compétences transférables : rigueur, réactivité, travail en équipe.',
-    skills: ['Gestion du temps', 'Communication', 'Travail d'équipe']
+    description: 'Flux tendu, priorisation, qualité de service. Compétences transférables : rigueur, réactivité, travail en équipe.',
+    skills: ['Gestion du temps', 'Communication', 'Travail d\'équipe']
   }
 ];
-
-// ——————————��—————————————————————————————————————————————
-// Modèle "Projet premium":
-// - pitch: 2–3 lignes (problème → solution → impact)
-// - impact: métriques vérifiables
-// - role: responsabilités concrètes
-// - highlights: 3 à 5 puces qui claquent
-// ————————————————————————————————————————————————————————
 
 export const projects = [
   {
     id: 'calculatrice-vue',
     title: 'Calculatrice Web – Vue + Pinia + Cypress',
-    pitch:
-      "Refonte d'une calculatrice web en SPA pour apprendre l'archi Vue moderne et l'ingénierie de tests. Résultat : UI fluide, état maîtrisé, régression quasi nulle.",
+    pitch: "Refonte d'une calculatrice web en SPA pour apprendre l'archi Vue moderne et l'ingénierie de tests. Résultat : UI fluide, état maîtrisé, régression quasi nulle.",
     role: 'Développeur Front & QA',
     technologies: ['Vue', 'Pinia', 'Cypress', 'TypeScript', 'HTML', 'CSS'],
     image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop',
@@ -130,7 +120,7 @@ export const projects = [
       'Architecture modulaire + état centralisé',
       '15 tests E2E et unitaires clés',
       'Accessibilité et responsive soignés',
-      'Perf Lighthouse 95/100',
+      'Perf Lighthouse 95/100'
     ],
     impact: {
       tests: '15 E2E',
@@ -141,8 +131,7 @@ export const projects = [
   {
     id: 'chatbot-voiceflow',
     title: 'Chatbot IA – Voiceflow x Make x Google Sheets',
-    pitch:
-      "Assistant éducatif & commercial avec classification d'intentions et intégrations API. But : répondre vite, capturer les leads et automatiser les actions back‑office.",
+    pitch: "Assistant éducatif & commercial avec classification d'intentions et intégrations API. But : répondre vite, capturer les leads et automatiser les actions back‑office.",
     role: 'Concepteur conversationnel & intégrateur',
     technologies: ['Voiceflow', 'Webhooks', 'Google Sheets', 'Make.com'],
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
@@ -156,7 +145,7 @@ export const projects = [
       'Gestion des intents + slots',
       '3 APIs intégrées via Make',
       'Base de connaissance Q/R',
-      'Capture automatique des leads',
+      'Capture automatique des leads'
     ],
     impact: {
       conversations: '500+ conversations',
@@ -167,8 +156,7 @@ export const projects = [
   {
     id: 'beewise-dashboard',
     title: 'BeeWise – Dashboard IoT Apiculture',
-    pitch:
-      "Centralisation de mesures capteurs (ruche) + alertes. Objectif : visibilité en temps réel et décisions rapides.",
+    pitch: "Centralisation de mesures capteurs (ruche) + alertes. Objectif : visibilité en temps réel et décisions rapides.",
     role: 'Dev back Python + intégrations',
     technologies: ['Python', 'Redis', 'Discord Bot', 'IoT'],
     image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=800&h=600&fit=crop',
@@ -181,7 +169,7 @@ export const projects = [
     highlights: [
       'Ingestion de données multi‑capteurs',
       'Alertes temps réel Discord',
-      'Cache Redis pour perfs',
+      'Cache Redis pour perfs'
     ],
     impact: {
       sensors: '12 capteurs',
@@ -192,8 +180,7 @@ export const projects = [
   {
     id: 'hip-hop-master',
     title: 'Hip‑Hop Master – Plateforme de réservation',
-    pitch:
-      "Site de formation danse avec gestion des cours, paiements et réservations. Focus : UX simple et tunnel de conversion propre.",
+    pitch: "Site de formation danse avec gestion des cours, paiements et réservations. Focus : UX simple et tunnel de conversion propre.",
     role: 'Full‑stack (React/Node)',
     technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
     image: 'https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=800&h=600&fit=crop',
@@ -206,7 +193,7 @@ export const projects = [
     highlights: [
       'Tunnel de paiement Stripe',
       'Tableau de bord réservations',
-      'Emailing transactionnel',
+      'Emailing transactionnel'
     ],
     impact: {
       users: '200+ utilisateurs',
@@ -217,8 +204,7 @@ export const projects = [
   {
     id: 'mentorbot-evolution',
     title: 'MentorBot Evolution – Agent IA perso',
-    pitch:
-      "Coach d'apprentissage propulsé par IA : suivi d'objectifs, rappels, fiches et feedback instant.",
+    pitch: "Coach d'apprentissage propulsé par IA : suivi d'objectifs, rappels, fiches et feedback instant.",
     role: 'Architecte & dev Python/React',
     technologies: ['Python', 'OpenAI', 'FastAPI', 'React'],
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
@@ -231,7 +217,7 @@ export const projects = [
     highlights: [
       'Planification intelligente',
       'Cartes mémoire auto‑générées',
-      'Interface web minimaliste',
+      'Interface web minimaliste'
     ],
     impact: {
       sessions: '300+ sessions',
@@ -242,8 +228,7 @@ export const projects = [
   {
     id: 'simulateur-brute-force',
     title: 'Simulateur Brute Force – Pédagogie sécurité',
-    pitch:
-      "Petit outil pour comprendre coût/temps d'attaques par force brute (éducatif, sensibilisation).",
+    pitch: "Petit outil pour comprendre coût/temps d'attaques par force brute (éducatif, sensibilisation).",
     role: 'Dev full‑stack léger (Flask + JS)',
     technologies: ['Python', 'Flask', 'JavaScript', 'Bootstrap'],
     image: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=600&fit=crop',
@@ -256,7 +241,7 @@ export const projects = [
     highlights: [
       'Paramétrage complexité/longueur',
       'Visualisation du temps estimé',
-      'Messages pédagogiques clairs',
+      'Messages pédagogiques clairs'
     ],
     impact: {
       simulations: '1000+ simulations',
@@ -299,38 +284,35 @@ export const testimonials = [
   },
   {
     name: 'Manager Five Guys',
-    role: 'Responsable d'équipe',
-    content: 'Très bon esprit d'équipe, fiable et autonome dans l'exécution.',
+    role: 'Responsable d\'équipe',
+    content: 'Très bon esprit d\'équipe, fiable et autonome dans l\'exécution.',
     rating: 5
   }
 ];
 
-// Nouvelle section utile pour recruteurs
 export const valueProposition = [
   {
     title: 'Pourquoi moi ?',
     bullets: [
       'Je livre : démos en ligne, tests, docs courtes et utiles.',
       'Je simplifie : interfaces nettes, libellés clairs, zéro jargon inutile.',
-      'Je mesure : perfs, taux d'erreur, métriques produit visibles.',
-      'Je m'adapte : stack React/Vue côté front, Python/Node côté back.'
+      'Je mesure : perfs, taux d\'erreur, métriques produit visibles.',
+      'Je m\'adapte : stack React/Vue côté front, Python/Node côté back.'
     ]
   }
 ];
 
-// Section appels à l'action (pour composants UI)
 export const callsToAction = [
   { id: 'cta-contact', label: 'Me contacter', href: 'mailto:mabiala@et.esiea.fr', kind: 'primary' },
   { id: 'cta-github', label: 'Voir mon GitHub', href: 'https://github.com/eulogep', kind: 'secondary' },
   { id: 'cta-cv', label: 'Télécharger le CV', href: '/cv-euloge-mabiala.pdf', kind: 'ghost' }
 ];
 
-// Aide pour trier/afficher côté UI
 export const uiHints = {
   featuredFirst: true,
   showMetricsBadges: true,
   groupSkillsByCategory: true,
-  projectCardLayout: 'grid-3', // grid-2 | grid-3 | carousel
+  projectCardLayout: 'grid-3',
   theme: {
     accent: '#6E56CF',
     rounded: '2xl',
@@ -338,7 +320,7 @@ export const uiHints = {
   }
 };
 
-// Legacy exports for compatibility
+// Legacy exports for compatibility with existing components
 export const funFacts = achievements;
 
 export default {
